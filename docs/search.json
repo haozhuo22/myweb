@@ -39,28 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Blog Post 1\n\n\nSimpson’s Paradox: When Every Group Tells One Story and the Total Tells Another\n\n\nAn admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\nWhy the Average Income Can Describe Almost Nobody\n\n\nA simple income example explains how high values pull the mean upward, and why the median tells a different story.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Haozhuo Zhang",
-    "section": "",
-    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
-  },
-  {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "Download my resume here:"
-  },
-  {
-    "objectID": "resume.html#resume-pdf",
-    "href": "resume.html#resume-pdf",
-    "title": "Resume",
-    "section": "Resume PDF",
-    "text": "Resume PDF"
+    "text": "Blog Post 1\n\n\nSimpson’s Paradox: When Every Group Tells One Story and the Total Tells Another\n\n\nAn admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/index.html",
@@ -112,46 +91,25 @@
     "text": "A lesson beyond this example\nSimpson’s 1951 paper examined relationships in contingency tables. Admissions also became a famous application in Bickel, Hammel, and O’Connell’s Berkeley study. Our deliberately simplified numbers are not taken from either paper. They demonstrate an exact arithmetic reversal, not a statistical estimate; there are no confidence intervals or claims about a real population.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nBefore trusting an overall comparison, inspect subgroup rates and their denominators. Ask whether different group compositions drive the result, then choose the comparison that fits your question. A convincing explanation needs the rates, the weights, and the context."
   },
   {
-    "objectID": "blog/posts/post3/index.html",
-    "href": "blog/posts/post3/index.html",
-    "title": "Blog Post 3",
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
     "section": "",
-    "text": "Imagine a tiny town with five workers. Their annual incomes are $30,000, $35,000, $40,000, $45,000, and $50,000. The average income is $40,000, which seems like a reasonable description of the town. Now the highest-paid worker receives a large raise and earns $250,000. The average income jumps to $80,000, even though the other four workers earn exactly what they earned before.\nHas the typical worker become twice as well off? Clearly, no. In fact, nobody in this town earns $80,000. This example reveals an easily misunderstood statistical concept: the mean can change dramatically without a corresponding change in most people’s experiences."
+    "text": "Download my resume here:"
   },
   {
-    "objectID": "blog/posts/post3/index.html#a-town-gets-richeror-does-it",
-    "href": "blog/posts/post3/index.html#a-town-gets-richeror-does-it",
-    "title": "Blog Post 3",
+    "objectID": "resume.html#resume-pdf",
+    "href": "resume.html#resume-pdf",
+    "title": "Resume",
+    "section": "Resume PDF",
+    "text": "Resume PDF"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Haozhuo Zhang",
     "section": "",
-    "text": "Imagine a tiny town with five workers. Their annual incomes are $30,000, $35,000, $40,000, $45,000, and $50,000. The average income is $40,000, which seems like a reasonable description of the town. Now the highest-paid worker receives a large raise and earns $250,000. The average income jumps to $80,000, even though the other four workers earn exactly what they earned before.\nHas the typical worker become twice as well off? Clearly, no. In fact, nobody in this town earns $80,000. This example reveals an easily misunderstood statistical concept: the mean can change dramatically without a corresponding change in most people’s experiences."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#what-does-average-actually-measure",
-    "href": "blog/posts/post3/index.html#what-does-average-actually-measure",
-    "title": "Blog Post 3",
-    "section": "What does “average” actually measure?",
-    "text": "What does “average” actually measure?\nHere, “average” means the arithmetic mean. To calculate it, add everyone’s income and divide by the number of workers:\n\\[\n\\text{Mean income} = \\frac{\\text{Total income}}{\\text{Number of workers}}.\n\\]\nA useful way to picture the mean is an equal-sharing exercise. If the workers pooled all their income and divided it equally, each would receive the mean. Initially, the pool contains $200,000, so each person’s equal share would be $40,000. After the raise, the pool contains $400,000, making the equal share $80,000.\nThe calculation is correct. What changes is our interpretation. Equal sharing is imaginary; the actual income distribution remains unequal. A larger pool does not automatically mean that most workers receive more."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#a-small-reproducible-experiment",
-    "href": "blog/posts/post3/index.html#a-small-reproducible-experiment",
-    "title": "Blog Post 3",
-    "section": "A small, reproducible experiment",
-    "text": "A small, reproducible experiment\nThe following analysis uses invented annual incomes, measured in thousands of dollars. These are teaching examples, not observations from a real town or an external dataset. The R code defines all values directly, so the analysis requires no downloads or additional packages beyond those normally used to render an R-based Quarto document.\n\n\nShow reproducible R code\nbefore &lt;- c(30, 35, 40, 45, 50)\nafter  &lt;- c(30, 35, 40, 45, 250)\n\nresults &lt;- data.frame(\n  Scenario = c(\"Before the raise\", \"After the raise\"),\n  `Mean income ($1,000)` = c(mean(before), mean(after)),\n  `Median income ($1,000)` = c(median(before), median(after)),\n  check.names = FALSE\n)\nknitr::kable(results, caption = \"One worker's raise doubles the mean but leaves the median unchanged.\")\n\n\n\nOne worker’s raise doubles the mean but leaves the median unchanged.\n\n\nScenario\nMean income ($1,000)\nMedian income ($1,000)\n\n\n\n\nBefore the raise\n40\n40\n\n\nAfter the raise\n80\n40\n\n\n\n\n\nThe median offers another description of the center. Sort incomes from lowest to highest and select the middle value. With five workers, this is the third income: $40,000 in both scenarios. For an even number of observations, the conventional median averages the two middle values.\n\n\nShow reproducible R code\nlocal({\n  old_par &lt;- par(mfrow = c(1, 2), mar = c(4.5, 4.5, 3, 1))\n  on.exit(par(old_par))\n\n  samples &lt;- list(\"Before the raise\" = before, \"After the raise\" = after)\n  for (scenario in names(samples)) {\n    incomes &lt;- samples[[scenario]]\n    plot(incomes, seq_along(incomes),\n         xlim = c(0, 270), ylim = c(0.5, 5.5),\n         xlab = \"Annual income (thousands of dollars)\",\n         ylab = \"Worker\", main = scenario,\n         pch = 19, col = \"#283747\", cex = 1.2,\n         yaxt = \"n\", bty = \"l\")\n    axis(2, at = 1:5, labels = 1:5, las = 1)\n    abline(v = mean(incomes), col = \"#176B9A\", lty = 2, lwd = 2)\n    abline(v = median(incomes), col = \"#B85C00\", lty = 3, lwd = 2)\n    text(incomes, seq_along(incomes), labels = incomes,\n         pos = 3, cex = 0.85)\n    legend(\"bottomright\",\n           legend = c(paste0(\"Mean: \", mean(incomes)),\n                      paste0(\"Median: \", median(incomes))),\n           col = c(\"#176B9A\", \"#B85C00\"), lty = c(2, 3),\n           lwd = 2, bty = \"n\", cex = 0.85)\n  }\n})\n\n\n\n\n\n\n\n\nFigure 1: Annual incomes in the invented town. Each dot represents one worker. The dashed blue line marks the mean; the dotted orange line marks the median. Before the raise, the two lines overlap at $40,000.\n\n\n\n\n\nThe figure makes the mechanism visible. Four dots stay in place while one moves far to the right. The mean moves because it uses every dollar of every income. The median stays fixed because the middle position has not changed. The additional $200,000 increases the mean by $200,000 divided by five, or $40,000."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#why-does-this-feel-surprising",
-    "href": "blog/posts/post3/index.html#why-does-this-feel-surprising",
-    "title": "Blog Post 3",
-    "section": "Why does this feel surprising?",
-    "text": "Why does this feel surprising?\nIn everyday language, we often treat “average” as meaning “typical.” That shortcut works reasonably well when values cluster together without a few unusually large observations. In our original town, the mean and median even coincide.\nAfter the raise, the distribution has a long upper tail: one income is much higher than the others. The mean responds strongly to that value, while the median describes the middle worker. Our intuition fails when we expect one number to answer both “How much income is there per person?” and “What does the middle person earn?” These are different questions."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#which-number-should-we-use",
-    "href": "blog/posts/post3/index.html#which-number-should-we-use",
-    "title": "Blog Post 3",
-    "section": "Which number should we use?",
-    "text": "Which number should we use?\nNeither measure is always better. The mean is useful for connecting total income to population size. The median is useful when we want to describe the middle of a distribution containing unusually high or low values. However, the median alone can also hide changes: in this example, it misses a substantial increase in total income. Reporting both gives readers more information than reporting either alone. This tiny example illustrates the arithmetic; it does not establish how incomes behave in any actual economy.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nA rising mean does not show that most people are better off. Before interpreting an “average,” ask how it was calculated and what question it answers. The mean describes an equal share of the total; the median describes the middle observation."
+    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
   },
   {
     "objectID": "about.html",
