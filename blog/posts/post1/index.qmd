@@ -1,0 +1,151 @@
+---
+title: "Blog Post 1"
+subtitle: "Simpson’s Paradox: When Every Group Tells One Story and the Total Tells Another"
+lang: en
+categories: [statistics, economics, data-science]
+description: "An admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly."
+format:
+  html:
+    theme: cosmo
+    toc: false
+    code-fold: true
+    code-summary: "Show reproducible R code"
+    embed-resources: true
+    html-math-method: katex
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## A headline that gets the comparison wrong
+
+Imagine a university with two departments: one less selective and one more selective. Applicants belong to Group A or Group B. A headline reports that 36% of Group A applicants were admitted, compared with 74% of Group B. That looks like a major advantage for B.
+
+But inside **each department**, A has the higher admission rate. How can A do better everywhere and still do worse overall?
+
+This is **Simpson’s paradox**: an association can reverse when we combine groups. It challenges our instinct that a consistent pattern in every part must survive in the whole. The problem is not faulty arithmetic; it is a change in who receives the most weight.
+
+## Build the puzzle from four rows
+
+All counts below are **invented for this explanation**, not real university records. There are 100 applicants in each group. The labels describe only department selectivity; we have no information about applicants’ qualifications.
+
+```{r}
+#| label: admissions-data
+# All data are defined here; no downloads or random simulation are needed.
+admissions <- data.frame(
+  group = c("A", "B", "A", "B"),
+  department = c("Less selective", "Less selective",
+                 "More selective", "More selective"),
+  applicants = c(10, 90, 90, 10),
+  admitted = c(9, 72, 27, 2)
+)
+admissions$rate <- admissions$admitted / admissions$applicants
+
+within_table <- data.frame(
+  Department = admissions$department,
+  Group = admissions$group,
+  Applicants = admissions$applicants,
+  Admitted = admissions$admitted,
+  `Admission rate` = sprintf("%.0f%%", 100 * admissions$rate),
+  check.names = FALSE
+)
+knitr::kable(within_table,
+             caption = "Synthetic admissions counts and within-department rates.")
+
+# Pool counts first, then divide: do not average percentages equally.
+totals <- aggregate(cbind(applicants, admitted) ~ group,
+                    data = admissions, FUN = sum)
+totals$rate <- totals$admitted / totals$applicants
+knitr::kable(data.frame(
+  Group = totals$group,
+  Applicants = totals$applicants,
+  Admitted = totals$admitted,
+  `Overall admission rate` = sprintf("%.0f%%", 100 * totals$rate),
+  check.names = FALSE
+), caption = "Pooling the same observations reverses the comparison.")
+```
+
+In the less selective department, A leads 90% to 80%. In the more selective department, A leads 30% to 20%. Both differences are ten **percentage points**. Yet overall, A admits 36 of 100 applicants and B admits 74 of 100. B’s aggregate advantage is 38 percentage points.
+
+```{r}
+#| label: fig-reversal
+#| fig-cap: "A leads within both departments, but B leads overall. All panels use the same percentage scale; the overall bars pool counts rather than averaging departmental rates equally."
+#| fig-alt: "Grouped bars show A versus B admission rates: 90 versus 80 percent in the less selective department, 30 versus 20 percent in the more selective department, and 36 versus 74 percent overall."
+#| fig-width: 8
+#| fig-height: 4.6
+rates <- rbind(
+  A = c(admissions$rate[1], admissions$rate[3], totals$rate[totals$group == "A"]),
+  B = c(admissions$rate[2], admissions$rate[4], totals$rate[totals$group == "B"])
+)
+colnames(rates) <- c("Less selective", "More selective", "Overall")
+local({
+  previous <- par(mar = c(4, 4, 2, 1))
+  on.exit(par(previous))
+  positions <- barplot(100 * rates, beside = TRUE,
+    col = c("#246B8E", "#D07629"), border = NA, ylim = c(0, 112),
+    ylab = "Admission rate (%)", las = 1)
+  text(positions, 100 * rates + 4,
+       labels = paste0(round(100 * rates), "%"), cex = 0.9)
+  legend("topright", legend = c("Group A", "Group B"),
+         fill = c("#246B8E", "#D07629"), bty = "n", horiz = TRUE)
+})
+```
+
+## The hidden ingredient: different weights
+
+Most A applicants choose the harder department, whereas most B applicants choose the easier one. Each overall rate is a **weighted average**: a department’s weight is its share of that group’s applicants.
+
+$$
+\begin{aligned}
+R_A &= 0.10(0.90) + 0.90(0.30) = 0.36,\\
+R_B &= 0.90(0.80) + 0.10(0.20) = 0.74.
+\end{aligned}
+$$
+
+Picture two baskets of exam scores. One basket contains mostly difficult exams; the other contains mostly easy exams. Comparing basket averages mixes performance with exam difficulty. Admissions rates work the same way: the overall comparison mixes within-department outcomes with application patterns.
+
+This explains the surprise. We mentally compare A and B using the same departmental mix, but the aggregate calculation uses different mixes. Having the same total number of applicants does not solve this problem. Their distribution across departments matters.
+
+## Compare the groups using a common mix
+
+We can separate the composition effect by giving both groups the same weights. Across all applicants, half apply to each department, so a 50–50 reference mix is natural here.
+
+```{r}
+#| label: standardize
+# Common weights come from the pooled applicant distribution.
+reference <- aggregate(applicants ~ department, admissions, sum)
+reference$weight <- reference$applicants / sum(reference$applicants)
+weighted_data <- merge(admissions, reference[c("department", "weight")],
+                       by = "department")
+weighted_data$contribution <- weighted_data$rate * weighted_data$weight
+adjusted <- aggregate(contribution ~ group, weighted_data, sum)
+knitr::kable(data.frame(
+  Group = adjusted$group,
+  `Rate with a common departmental mix` =
+    sprintf("%.0f%%", 100 * adjusted$contribution),
+  check.names = FALSE
+), caption = "Standardized rates answer a different question from observed overall rates.")
+
+# Verify the numerical claims and the reversal.
+stopifnot(all(admissions$admitted <= admissions$applicants),
+          isTRUE(all.equal(as.numeric(totals$rate), c(0.36, 0.74))),
+          all(rates[1, 1:2] > rates[2, 1:2]),
+          isTRUE(all.equal(as.numeric(adjusted$contribution), c(0.60, 0.50))))
+```
+
+Now A’s standardized rate is 60% and B’s is 50%. These are hypothetical rates calculated by retaining each group’s departmental rates while imposing a common application mix. They are not additional observed admissions or predictions about what would happen if applicants changed departments.
+
+## Which comparison answers the right question?
+
+For “What fraction of each group’s actual applicants was admitted?”, the overall rates are correct. For “How do their rates compare within departments?”, use the departmental rates. For “How do they compare under a common departmental mix?”, standardized rates are useful. No arithmetic result contradicts another; each answers a different question.
+
+None proves discrimination, fairness, or a causal effect of group membership. Qualifications and other selection processes remain unobserved. Department choice could itself reflect unequal access, so adjusting for it might conceal part of the mechanism we care about. Choosing what to condition on requires understanding the process, not automatically splitting every dataset into smaller groups.
+
+## A lesson beyond this example
+
+Simpson’s [1951 paper](https://doi.org/10.1111/j.2517-6161.1951.tb00088.x) examined relationships in contingency tables. Admissions also became a famous application in [Bickel, Hammel, and O’Connell’s Berkeley study](https://doi.org/10.1126/science.187.4175.398). Our deliberately simplified numbers are not taken from either paper. They demonstrate an exact arithmetic reversal, not a statistical estimate; there are no confidence intervals or claims about a real population.
+
+::: {.callout-note title="Takeaway"}
+Before trusting an overall comparison, inspect subgroup rates **and their denominators**. Ask whether different group compositions drive the result, then choose the comparison that fits your question. A convincing explanation needs the rates, the weights, and the context.
+:::

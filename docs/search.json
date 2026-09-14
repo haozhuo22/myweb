@@ -25,7 +25,7 @@
     "href": "bio.html#interests",
     "title": "About Me",
     "section": "Interests",
-    "text": "Interests\n\nEconometrics\nMachine Learning\nData Analysis"
+    "text": "Interests\n\nMachine Learning\nData Analysis"
   },
   {
     "objectID": "bio.html#contact",
@@ -46,7 +46,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My First Blog Post\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Blog Post 1\n\n\nSimpson’s Paradox: When Every Group Tells One Story and the Total Tells Another\n\n\nAn admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
@@ -75,5 +75,89 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog/posts/post1/index.html",
+    "href": "blog/posts/post1/index.html",
+    "title": "Blog Post 1",
+    "section": "",
+    "text": "Imagine a university with two departments: one less selective and one more selective. Applicants belong to Group A or Group B. A headline reports that 36% of Group A applicants were admitted, compared with 74% of Group B. That looks like a major advantage for B.\nBut inside each department, A has the higher admission rate. How can A do better everywhere and still do worse overall?\nThis is Simpson’s paradox: an association can reverse when we combine groups. It challenges our instinct that a consistent pattern in every part must survive in the whole. The problem is not faulty arithmetic; it is a change in who receives the most weight."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#a-town-gets-richeror-does-it",
+    "href": "blog/posts/post1/index.html#a-town-gets-richeror-does-it",
+    "title": "Blog Post 1",
+    "section": "",
+    "text": "Imagine a tiny town with five workers. Their annual incomes are $30,000, $35,000, $40,000, $45,000, and $50,000. The average income is $40,000, which seems like a reasonable description of the town. Now the highest-paid worker receives a large raise and earns $250,000. The average income jumps to $80,000, even though the other four workers earn exactly what they earned before.\nHas the typical worker become twice as well off? Clearly, no. In fact, nobody in this town earns $80,000. This example reveals an easily misunderstood statistical concept: the mean can change dramatically without a corresponding change in most people’s experiences."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#what-does-average-actually-measure",
+    "href": "blog/posts/post1/index.html#what-does-average-actually-measure",
+    "title": "Blog Post 1",
+    "section": "What does “average” actually measure?",
+    "text": "What does “average” actually measure?\nHere, “average” means the arithmetic mean. To calculate it, add everyone’s income and divide by the number of workers:\n\\[\n\\text{Mean income} = \\frac{\\text{Total income}}{\\text{Number of workers}}.\n\\]\nA useful way to picture the mean is an equal-sharing exercise. If the workers pooled all their income and divided it equally, each would receive the mean. Initially, the pool contains $200,000, so each person’s equal share would be $40,000. After the raise, the pool contains $400,000, making the equal share $80,000.\nThe calculation is correct. What changes is our interpretation. Equal sharing is imaginary; the actual income distribution remains unequal. A larger pool does not automatically mean that most workers receive more."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#a-small-reproducible-experiment",
+    "href": "blog/posts/post1/index.html#a-small-reproducible-experiment",
+    "title": "Blog Post 1",
+    "section": "A small, reproducible experiment",
+    "text": "A small, reproducible experiment\nThe following analysis uses invented annual incomes, measured in thousands of dollars. These are teaching examples, not observations from a real town or an external dataset. The R code defines all values directly, so the analysis requires no downloads or additional packages beyond those normally used to render an R-based Quarto document.\n\n\nShow reproducible R code\nbefore &lt;- c(30, 35, 40, 45, 50)\nafter  &lt;- c(30, 35, 40, 45, 250)\n\nresults &lt;- data.frame(\n  Scenario = c(\"Before the raise\", \"After the raise\"),\n  `Mean income ($1,000)` = c(mean(before), mean(after)),\n  `Median income ($1,000)` = c(median(before), median(after)),\n  check.names = FALSE\n)\nknitr::kable(results, caption = \"One worker's raise doubles the mean but leaves the median unchanged.\")\n\n\n\nOne worker’s raise doubles the mean but leaves the median unchanged.\n\n\nScenario\nMean income ($1,000)\nMedian income ($1,000)\n\n\n\n\nBefore the raise\n40\n40\n\n\nAfter the raise\n80\n40\n\n\n\n\n\nThe median offers another description of the center. Sort incomes from lowest to highest and select the middle value. With five workers, this is the third income: $40,000 in both scenarios. For an even number of observations, the conventional median averages the two middle values.\n\n\nShow reproducible R code\nlocal({\n  old_par &lt;- par(mfrow = c(1, 2), mar = c(4.5, 4.5, 3, 1))\n  on.exit(par(old_par))\n\n  samples &lt;- list(\"Before the raise\" = before, \"After the raise\" = after)\n  for (scenario in names(samples)) {\n    incomes &lt;- samples[[scenario]]\n    plot(incomes, seq_along(incomes),\n         xlim = c(0, 270), ylim = c(0.5, 5.5),\n         xlab = \"Annual income (thousands of dollars)\",\n         ylab = \"Worker\", main = scenario,\n         pch = 19, col = \"#283747\", cex = 1.2,\n         yaxt = \"n\", bty = \"l\")\n    axis(2, at = 1:5, labels = 1:5, las = 1)\n    abline(v = mean(incomes), col = \"#176B9A\", lty = 2, lwd = 2)\n    abline(v = median(incomes), col = \"#B85C00\", lty = 3, lwd = 2)\n    text(incomes, seq_along(incomes), labels = incomes,\n         pos = 3, cex = 0.85)\n    legend(\"bottomright\",\n           legend = c(paste0(\"Mean: \", mean(incomes)),\n                      paste0(\"Median: \", median(incomes))),\n           col = c(\"#176B9A\", \"#B85C00\"), lty = c(2, 3),\n           lwd = 2, bty = \"n\", cex = 0.85)\n  }\n})\n\n\n\n\n\n\n\n\nFigure 1: Annual incomes in the invented town. Each dot represents one worker. The dashed blue line marks the mean; the dotted orange line marks the median. Before the raise, the two lines overlap at $40,000.\n\n\n\n\n\nThe figure makes the mechanism visible. Four dots stay in place while one moves far to the right. The mean moves because it uses every dollar of every income. The median stays fixed because the middle position has not changed. The additional $200,000 increases the mean by $200,000 divided by five, or $40,000."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#why-does-this-feel-surprising",
+    "href": "blog/posts/post1/index.html#why-does-this-feel-surprising",
+    "title": "Blog Post 1",
+    "section": "Why does this feel surprising?",
+    "text": "Why does this feel surprising?\nIn everyday language, we often treat “average” as meaning “typical.” That shortcut works reasonably well when values cluster together without a few unusually large observations. In our original town, the mean and median even coincide.\nAfter the raise, the distribution has a long upper tail: one income is much higher than the others. The mean responds strongly to that value, while the median describes the middle worker. Our intuition fails when we expect one number to answer both “How much income is there per person?” and “What does the middle person earn?” These are different questions."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#which-number-should-we-use",
+    "href": "blog/posts/post1/index.html#which-number-should-we-use",
+    "title": "Blog Post 1",
+    "section": "Which number should we use?",
+    "text": "Which number should we use?\nNeither measure is always better. The mean is useful for connecting total income to population size. The median is useful when we want to describe the middle of a distribution containing unusually high or low values. However, the median alone can also hide changes: in this example, it misses a substantial increase in total income. Reporting both gives readers more information than reporting either alone. This tiny example illustrates the arithmetic; it does not establish how incomes behave in any actual economy.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nA rising mean does not show that most people are better off. Before interpreting an “average,” ask how it was calculated and what question it answers. The mean describes an equal share of the total; the median describes the middle observation."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#a-headline-that-gets-the-comparison-wrong",
+    "href": "blog/posts/post1/index.html#a-headline-that-gets-the-comparison-wrong",
+    "title": "Blog Post 1",
+    "section": "",
+    "text": "Imagine a university with two departments: one less selective and one more selective. Applicants belong to Group A or Group B. A headline reports that 36% of Group A applicants were admitted, compared with 74% of Group B. That looks like a major advantage for B.\nBut inside each department, A has the higher admission rate. How can A do better everywhere and still do worse overall?\nThis is Simpson’s paradox: an association can reverse when we combine groups. It challenges our instinct that a consistent pattern in every part must survive in the whole. The problem is not faulty arithmetic; it is a change in who receives the most weight."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#build-the-puzzle-from-four-rows",
+    "href": "blog/posts/post1/index.html#build-the-puzzle-from-four-rows",
+    "title": "Blog Post 1",
+    "section": "Build the puzzle from four rows",
+    "text": "Build the puzzle from four rows\nAll counts below are invented for this explanation, not real university records. There are 100 applicants in each group. The labels describe only department selectivity; we have no information about applicants’ qualifications.\n\n\nShow reproducible R code\n# All data are defined here; no downloads or random simulation are needed.\nadmissions &lt;- data.frame(\n  group = c(\"A\", \"B\", \"A\", \"B\"),\n  department = c(\"Less selective\", \"Less selective\",\n                 \"More selective\", \"More selective\"),\n  applicants = c(10, 90, 90, 10),\n  admitted = c(9, 72, 27, 2)\n)\nadmissions$rate &lt;- admissions$admitted / admissions$applicants\n\nwithin_table &lt;- data.frame(\n  Department = admissions$department,\n  Group = admissions$group,\n  Applicants = admissions$applicants,\n  Admitted = admissions$admitted,\n  `Admission rate` = sprintf(\"%.0f%%\", 100 * admissions$rate),\n  check.names = FALSE\n)\nknitr::kable(within_table,\n             caption = \"Synthetic admissions counts and within-department rates.\")\n\n\n\nSynthetic admissions counts and within-department rates.\n\n\nDepartment\nGroup\nApplicants\nAdmitted\nAdmission rate\n\n\n\n\nLess selective\nA\n10\n9\n90%\n\n\nLess selective\nB\n90\n72\n80%\n\n\nMore selective\nA\n90\n27\n30%\n\n\nMore selective\nB\n10\n2\n20%\n\n\n\n\n\nShow reproducible R code\n# Pool counts first, then divide: do not average percentages equally.\ntotals &lt;- aggregate(cbind(applicants, admitted) ~ group,\n                    data = admissions, FUN = sum)\ntotals$rate &lt;- totals$admitted / totals$applicants\nknitr::kable(data.frame(\n  Group = totals$group,\n  Applicants = totals$applicants,\n  Admitted = totals$admitted,\n  `Overall admission rate` = sprintf(\"%.0f%%\", 100 * totals$rate),\n  check.names = FALSE\n), caption = \"Pooling the same observations reverses the comparison.\")\n\n\n\nPooling the same observations reverses the comparison.\n\n\nGroup\nApplicants\nAdmitted\nOverall admission rate\n\n\n\n\nA\n100\n36\n36%\n\n\nB\n100\n74\n74%\n\n\n\n\n\nIn the less selective department, A leads 90% to 80%. In the more selective department, A leads 30% to 20%. Both differences are ten percentage points. Yet overall, A admits 36 of 100 applicants and B admits 74 of 100. B’s aggregate advantage is 38 percentage points.\n\n\nShow reproducible R code\nrates &lt;- rbind(\n  A = c(admissions$rate[1], admissions$rate[3], totals$rate[totals$group == \"A\"]),\n  B = c(admissions$rate[2], admissions$rate[4], totals$rate[totals$group == \"B\"])\n)\ncolnames(rates) &lt;- c(\"Less selective\", \"More selective\", \"Overall\")\nlocal({\n  previous &lt;- par(mar = c(4, 4, 2, 1))\n  on.exit(par(previous))\n  positions &lt;- barplot(100 * rates, beside = TRUE,\n    col = c(\"#246B8E\", \"#D07629\"), border = NA, ylim = c(0, 112),\n    ylab = \"Admission rate (%)\", las = 1)\n  text(positions, 100 * rates + 4,\n       labels = paste0(round(100 * rates), \"%\"), cex = 0.9)\n  legend(\"topright\", legend = c(\"Group A\", \"Group B\"),\n         fill = c(\"#246B8E\", \"#D07629\"), bty = \"n\", horiz = TRUE)\n})\n\n\n\n\n\n\n\n\nFigure 1: A leads within both departments, but B leads overall. All panels use the same percentage scale; the overall bars pool counts rather than averaging departmental rates equally."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#the-hidden-ingredient-different-weights",
+    "href": "blog/posts/post1/index.html#the-hidden-ingredient-different-weights",
+    "title": "Blog Post 1",
+    "section": "The hidden ingredient: different weights",
+    "text": "The hidden ingredient: different weights\nMost A applicants choose the harder department, whereas most B applicants choose the easier one. Each overall rate is a weighted average: a department’s weight is its share of that group’s applicants.\n\n\\begin{aligned}\nR_A &= 0.10(0.90) + 0.90(0.30) = 0.36,\\\\\nR_B &= 0.90(0.80) + 0.10(0.20) = 0.74.\n\\end{aligned}\n\nPicture two baskets of exam scores. One basket contains mostly difficult exams; the other contains mostly easy exams. Comparing basket averages mixes performance with exam difficulty. Admissions rates work the same way: the overall comparison mixes within-department outcomes with application patterns.\nThis explains the surprise. We mentally compare A and B using the same departmental mix, but the aggregate calculation uses different mixes. Having the same total number of applicants does not solve this problem. Their distribution across departments matters."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#compare-the-groups-using-a-common-mix",
+    "href": "blog/posts/post1/index.html#compare-the-groups-using-a-common-mix",
+    "title": "Blog Post 1",
+    "section": "Compare the groups using a common mix",
+    "text": "Compare the groups using a common mix\nWe can separate the composition effect by giving both groups the same weights. Across all applicants, half apply to each department, so a 50–50 reference mix is natural here.\n\n\nShow reproducible R code\n# Common weights come from the pooled applicant distribution.\nreference &lt;- aggregate(applicants ~ department, admissions, sum)\nreference$weight &lt;- reference$applicants / sum(reference$applicants)\nweighted_data &lt;- merge(admissions, reference[c(\"department\", \"weight\")],\n                       by = \"department\")\nweighted_data$contribution &lt;- weighted_data$rate * weighted_data$weight\nadjusted &lt;- aggregate(contribution ~ group, weighted_data, sum)\nknitr::kable(data.frame(\n  Group = adjusted$group,\n  `Rate with a common departmental mix` =\n    sprintf(\"%.0f%%\", 100 * adjusted$contribution),\n  check.names = FALSE\n), caption = \"Standardized rates answer a different question from observed overall rates.\")\n\n\n\nStandardized rates answer a different question from observed overall rates.\n\n\nGroup\nRate with a common departmental mix\n\n\n\n\nA\n60%\n\n\nB\n50%\n\n\n\n\n\nShow reproducible R code\n# Verify the numerical claims and the reversal.\nstopifnot(all(admissions$admitted &lt;= admissions$applicants),\n          isTRUE(all.equal(as.numeric(totals$rate), c(0.36, 0.74))),\n          all(rates[1, 1:2] &gt; rates[2, 1:2]),\n          isTRUE(all.equal(as.numeric(adjusted$contribution), c(0.60, 0.50))))\n\n\nNow A’s standardized rate is 60% and B’s is 50%. These are hypothetical rates calculated by retaining each group’s departmental rates while imposing a common application mix. They are not additional observed admissions or predictions about what would happen if applicants changed departments."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#which-comparison-answers-the-right-question",
+    "href": "blog/posts/post1/index.html#which-comparison-answers-the-right-question",
+    "title": "Blog Post 1",
+    "section": "Which comparison answers the right question?",
+    "text": "Which comparison answers the right question?\nFor “What fraction of each group’s actual applicants was admitted?”, the overall rates are correct. For “How do their rates compare within departments?”, use the departmental rates. For “How do they compare under a common departmental mix?”, standardized rates are useful. No arithmetic result contradicts another; each answers a different question.\nNone proves discrimination, fairness, or a causal effect of group membership. Qualifications and other selection processes remain unobserved. Department choice could itself reflect unequal access, so adjusting for it might conceal part of the mechanism we care about. Choosing what to condition on requires understanding the process, not automatically splitting every dataset into smaller groups."
+  },
+  {
+    "objectID": "blog/posts/post1/index.html#a-lesson-beyond-this-example",
+    "href": "blog/posts/post1/index.html#a-lesson-beyond-this-example",
+    "title": "Blog Post 1",
+    "section": "A lesson beyond this example",
+    "text": "A lesson beyond this example\nSimpson’s 1951 paper examined relationships in contingency tables. Admissions also became a famous application in Bickel, Hammel, and O’Connell’s Berkeley study. Our deliberately simplified numbers are not taken from either paper. They demonstrate an exact arithmetic reversal, not a statistical estimate; there are no confidence intervals or claims about a real population.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nBefore trusting an overall comparison, inspect subgroup rates and their denominators. Ask whether different group compositions drive the result, then choose the comparison that fits your question. A convincing explanation needs the rates, the weights, and the context."
   }
 ]
