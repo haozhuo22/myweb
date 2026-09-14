@@ -1,6 +1,7 @@
 ---
 title: "Blog Post 1"
 subtitle: "Simpson’s Paradox: When Every Group Tells One Story and the Total Tells Another"
+date: 2026-09-14
 lang: en
 categories: [statistics, economics, data-science]
 description: "An admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly."
