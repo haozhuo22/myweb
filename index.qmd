@@ -4,13 +4,13 @@ title: ""
 
 ::::: columns
 ::: {.column width="35%"}
-![](images/profile.png){width="100%"}
+![](profile.jpg){width="100%"}
 :::
 
 ::: {.column width="65%"}
 ![](images/UniversityofPennsylvania_FullLogo_RGB.png){width="250px"}
 
-# Student Name
+# Haozhuo Zhang
 
 University of Pennsylvaina
 
