@@ -17,7 +17,6 @@ Master of Applied Economics and Data Science, University of Pennsylvania (expace
 
 ## Interests
 
--   Econometrics
 -   Machine Learning
 -   Data Analysis
 
