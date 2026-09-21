@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Blog Post 1\n\n\nSimpson’s Paradox: When Every Group Tells One Story and the Total Tells Another\n\n\nAn admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Blog Post 2\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\nSimpson’s Paradox: When Every Group Tells One Story and the Total Tells Another\n\n\nAn admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/index.html",
@@ -117,5 +117,47 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog/posts/post2/index.html",
+    "href": "blog/posts/post2/index.html",
+    "title": "Blog Post 2",
+    "section": "",
+    "text": "America’s most famous national parks can also be its busiest. A traveler who values open space might ask: Which established parks in the contiguous United States combine substantial visitation with relatively low visitor pressure? Rather than naming my favorite park, I will build a transparent shortlist from two measurable quantities: annual recreation visits and park area.\nMy metric is annual visits per 1,000 acres. A smaller number means more park acreage relative to recorded visits. It is a screening tool—not a literal count of people someone will meet. Visitors cluster at popular trails, arrive in different seasons, and may enter the same park more than once."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#the-decision-where-might-a-crowd-averse-traveler-start",
+    "href": "blog/posts/post2/index.html#the-decision-where-might-a-crowd-averse-traveler-start",
+    "title": "Blog Post 2",
+    "section": "",
+    "text": "America’s most famous national parks can also be its busiest. A traveler who values open space might ask: Which established parks in the contiguous United States combine substantial visitation with relatively low visitor pressure? Rather than naming my favorite park, I will build a transparent shortlist from two measurable quantities: annual recreation visits and park area.\nMy metric is annual visits per 1,000 acres. A smaller number means more park acreage relative to recorded visits. It is a screening tool—not a literal count of people someone will meet. Visitors cluster at popular trails, arrive in different seasons, and may enter the same park more than once."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#one-respectful-request",
+    "href": "blog/posts/post2/index.html#one-respectful-request",
+    "title": "Blog Post 2",
+    "section": "One respectful request",
+    "text": "One respectful request\nI scraped the Wikipedia list of U.S. national parks on September 20, 2026. Its table reports 2023 acreage and 2025 recreation visits, citing National Park Service sources. Wikipedia text is available under CC BY-SA 4.0, and this post attributes and links the source rather than copying its prose or images. I also checked Wikipedia’s robots.txt: this ordinary article path is not disallowed. The analysis sends one request, accesses no login or restricted page, and does not crawl individual park pages.\nAs a provenance check, I compared the scraped leaders with the official NPS Annual Visitation by Park report. The 2025 totals match exactly: Death Valley 1,320,134, Everglades 778,198, and Big Bend 568,104. These are recreation visits, not unique people. The NPS portal remains the appropriate place to verify later revisions before booking.\n\n\nShow reproducible R code\nlibrary(rvest)\nlibrary(dplyr)\nlibrary(stringr)\nlibrary(readr)\nlibrary(ggplot2)\n\nurl &lt;- \"https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States\"\n\n# One HTTP request; select the first table by its semantic CSS class.\npage &lt;- read_html(url)\nraw &lt;- page |&gt;\n  html_element(\"table.wikitable\") |&gt;\n  html_table(fill = TRUE)\n\n# Footnote numbers in column names can change, so locate columns by prefix.\narea_col &lt;- names(raw)[str_detect(names(raw), \"^Area\")][1]\nvisit_col &lt;- names(raw)[str_detect(names(raw), \"^Recreation visitors\")][1]\nstopifnot(!is.na(area_col), !is.na(visit_col))\n\nparks &lt;- raw |&gt;\n  transmute(\n    park = Name |&gt;\n      str_remove_all(\"[†‡*]\") |&gt;\n      str_squish(),\n    location = Location |&gt;\n      str_remove(\"\\\\s*\\\\.mw-parser.*$\") |&gt;\n      str_remove(\"\\\\s+\\\\d.*$\") |&gt;\n      str_squish(),\n    area_acres = parse_number(.data[[area_col]]),\n    visits_2025 = parse_number(.data[[visit_col]])\n  ) |&gt;\n  mutate(visits_per_1000_acres = visits_2025 / (area_acres / 1000))\n\n# Fail loudly if the page structure or numeric parsing has broken.\nstopifnot(nrow(parks) &gt;= 60,\n          all(!is.na(parks$area_acres)),\n          all(!is.na(parks$visits_2025)),\n          all(parks$area_acres &gt; 0),\n          all(parks$visits_2025 &gt; 0))\n\n\nThe scrape returns 63 parks. Separating extraction from cleaning makes the workflow auditable: html_table() collects text; parse_number() removes commas, units, and footnotes; and the checks stop the analysis instead of silently producing nonsense if the page changes."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#define-a-useful-comparison-set",
+    "href": "blog/posts/post2/index.html#define-a-useful-comparison-set",
+    "title": "Blog Post 2",
+    "section": "Define a useful comparison set",
+    "text": "Define a useful comparison set\nHuge, remote Alaskan parks naturally have very low density but may not suit an ordinary road trip. I therefore exclude Alaska, Hawaii, and U.S. territories, then require at least 500,000 annual visits. The threshold is a simple proxy for an established destination, not a quality judgment. Changing it changes the choice set, so I report it explicitly.\n\n\nShow reproducible R code\ncandidates &lt;- parks |&gt;\n  filter(\n    !str_detect(location, \"Alaska|Hawaii|American Samoa|Virgin Islands\"),\n    visits_2025 &gt;= 500000\n  ) |&gt;\n  arrange(visits_per_1000_acres)\n\nshortlist &lt;- candidates |&gt;\n  slice_head(n = 8) |&gt;\n  transmute(\n    Park = park,\n    Location = location,\n    `2025 visits` = scales::comma(visits_2025),\n    `Area (acres)` = scales::comma(round(area_acres)),\n    `Visits per 1,000 acres` = scales::number(\n      visits_per_1000_acres, accuracy = 1\n    )\n  )\n\nknitr::kable(\n  shortlist,\n  align = c(\"l\", \"l\", \"r\", \"r\", \"r\"),\n  caption = \"Lowest visitor pressure among established contiguous-U.S. candidates.\"\n)\n\n\n\nLowest visitor pressure among established contiguous-U.S. candidates.\n\n\n\n\n\n\n\n\n\nPark\nLocation\n2025 visits\nArea (acres)\nVisits per 1,000 acres\n\n\n\n\nDeath Valley\nCalifornia, Nevada\n1,320,134\n3,408,396\n387\n\n\nEverglades\nFlorida\n778,198\n1,508,939\n516\n\n\nBig Bend\nTexas\n568,104\n801,163\n709\n\n\nKings Canyon\nCalifornia\n779,791\n461,901\n1 688\n\n\nYellowstone\nWyoming, Montana, Idaho\n4,762,988\n2,219,791\n2 146\n\n\nCanyonlands\nUtah\n796,057\n337,598\n2 358\n\n\nGlacier\nMontana\n3,136,557\n1,013,126\n3 096\n\n\nSequoia\nCalifornia\n1,378,337\n404,063\n3 411"
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#what-the-comparison-reveals",
+    "href": "blog/posts/post2/index.html#what-the-comparison-reveals",
+    "title": "Blog Post 2",
+    "section": "What the comparison reveals",
+    "text": "What the comparison reveals\n\n\nShow reproducible R code\ntop_eight &lt;- candidates |&gt; slice_head(n = 8)\nreference_density &lt;- median(candidates$visits_per_1000_acres)\n\nggplot(candidates, aes(area_acres, visits_2025)) +\n  geom_abline(\n    slope = reference_density / 1000,\n    intercept = 0,\n    linetype = \"dashed\", color = \"#8A8A8A\"\n  ) +\n  geom_point(color = \"#9CB9C8\", size = 2.6, alpha = 0.8) +\n  geom_point(data = top_eight, color = \"#C4512D\", size = 3) +\n  geom_text(\n    data = top_eight,\n    aes(label = park),\n    nudge_y = 0.10,\n    check_overlap = TRUE,\n    size = 3.2,\n    color = \"#5B2B1E\"\n  ) +\n  scale_x_log10(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +\n  scale_y_log10(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +\n  labs(\n    x = \"Park area (acres, log scale)\",\n    y = \"2025 recreation visits (log scale)\",\n    title = \"Large parks can absorb the same annual visitation differently\",\n    subtitle = \"Candidates are contiguous-U.S. parks with at least 500,000 visits\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(panel.grid.minor = element_blank(), plot.title.position = \"plot\")\n\n\n\n\n\n\n\n\nFigure 1: Parks above the dashed line have more visits per 1,000 acres. Labels identify the eight lowest-pressure candidates; both axes are logarithmic so large and small parks remain visible.\n\n\n\n\n\nDeath Valley, Everglades, and Big Bend form the strongest initial shortlist. Death Valley has the lowest ratio in the filtered set: about 387 visits per 1,000 acres. By comparison, the candidate median is about 7,655. Everglades and Big Bend also combine more than half a million visits with large areas. For someone prioritizing space, I would investigate these three before defaulting to the most visited names."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#from-ranking-to-action",
+    "href": "blog/posts/post2/index.html#from-ranking-to-action",
+    "title": "Blog Post 2",
+    "section": "From ranking to action",
+    "text": "From ranking to action\nThe recommendation is to use this shortlist as stage one, then consult official park pages for road access, reservation rules, weather, closures, and seasonal visitation. For example, vast acreage can be wilderness, water, or otherwise inaccessible; annual totals cannot reveal congestion at one entrance at noon. The dataset counts visits rather than unique people and mixes two reference years (2023 area and 2025 visits). Wikipedia can also change after this post is rendered.\nThose limitations do not make the analysis useless. They define what it can support: a low-cost way to narrow 63 possibilities, followed by local research. A stronger second stage would scrape or download monthly NPS visitation and compare the traveler’s intended month. That could distinguish a genuinely quieter trip window from a park that only looks spacious in an annual average.\n\n\n\n\n\n\nImportantActionable takeaway\n\n\n\nFor a crowd-averse contiguous-U.S. park trip, begin with Death Valley, Everglades, and Big Bend, then verify season, access, and conditions with the NPS. The main analytical lesson is equally practical: rank options with a transparent denominator, state the filters, and never mistake acreage-adjusted annual visits for the experience at a particular trail or time."
   }
 ]
