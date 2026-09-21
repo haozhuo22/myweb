@@ -70,6 +70,10 @@ stopifnot(nrow(parks) >= 60,
           all(!is.na(parks$visits_2025)),
           all(parks$area_acres > 0),
           all(parks$visits_2025 > 0))
+
+# Archive the snapshot this post was built from, so the numbers reported here
+# stay reproducible even after Wikipedia is edited.
+write_csv(parks, "data/parks_clean.csv")
 ```
 
 The scrape returns `r nrow(parks)` parks. Separating extraction from cleaning makes the workflow auditable: `html_table()` collects text; `parse_number()` removes commas, units, and footnotes; and the checks stop the analysis instead of silently producing nonsense if the page changes.

@@ -4193,7 +4193,11 @@ margin-top: 0.5em;
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(<span class="sc">!</span><span class="fu">is.na</span>(parks<span class="sc">$</span>area_acres)),</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(<span class="sc">!</span><span class="fu">is.na</span>(parks<span class="sc">$</span>visits_2025)),</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(parks<span class="sc">$</span>area_acres <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(parks<span class="sc">$</span>visits_2025 <span class="sc">&gt;</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(parks<span class="sc">$</span>visits_2025 <span class="sc">&gt;</span> <span class="dv">0</span>))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Archive the snapshot this post was built from, so the numbers reported here</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># stay reproducible even after Wikipedia is edited.</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(parks, <span class="st">&quot;data/parks_clean.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The scrape returns 63 parks. Separating extraction from cleaning makes the workflow auditable: <code>html_table()</code> collects text; <code>parse_number()</code> removes commas, units, and footnotes; and the checks stop the analysis instead of silently producing nonsense if the page changes.</p>
