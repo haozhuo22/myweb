@@ -1,0 +1,6 @@
+"series_id","description","source_agency","original_frequency","units","fred_url","retrieved_on"
+"MSPUS","Median sales price of new houses sold in the United States","U.S. Census Bureau and U.S. Department of Housing and Urban Development","Quarterly","Current dollars","https://fred.stlouisfed.org/series/MSPUS","2026-10-05"
+"MORTGAGE30US","30-year fixed-rate mortgage average in the United States","Freddie Mac","Weekly","Percent","https://fred.stlouisfed.org/series/MORTGAGE30US","2026-10-05"
+"MEHOINUSA646N","Median household income in the United States","U.S. Census Bureau","Annual","Current dollars","https://fred.stlouisfed.org/series/MEHOINUSA646N","2026-10-05"
+"CPIAUCSL","Consumer Price Index for All Urban Consumers: All Items","U.S. Bureau of Labor Statistics","Monthly","Index, 1982-1984=100","https://fred.stlouisfed.org/series/CPIAUCSL","2026-10-05"
+"USRECQ","NBER-based recession indicator, peak-following period through trough","Federal Reserve Bank of St. Louis, based on NBER dates","Quarterly","1=recession, 0=expansion","https://fred.stlouisfed.org/series/USRECQ","2026-10-05"

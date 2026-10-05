@@ -1,0 +1,106 @@
+---
+title: "Priced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability"
+subtitle: "A FRED-based decomposition of the 2019–2025 homebuying squeeze"
+date: 2026-10-05
+lang: en
+categories: [housing, data-visualization, FRED]
+description: "Home prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power."
+format:
+  html:
+    theme: flatly
+    toc: true
+    code-fold: true
+    code-summary: "Show reproducible R code"
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/02_analysis.R")
+```
+
+## The question: what changed after 2019?
+
+A house can become less affordable in three ways: its price rises, the mortgage rate rises, or household income fails to keep up. Since 2019, all three have moved at different times. Which changes mattered most for a typical prospective buyer?
+
+I combine five public series downloaded programmatically from the Federal Reserve Bank of St. Louis's FRED service. They measure the median price of a **new** home, the average 30-year fixed mortgage rate, median household income, consumer prices, and NBER recession periods. The analysis ends in 2025 Q4, the latest quarter for which all required series overlap.
+
+The central measure is an illustrative mortgage burden. I assume a 20% down payment and a 30-year fixed-rate loan. For house price \(P\), annual mortgage rate \(i\), and monthly rate \(r=i/12\), the monthly principal-and-interest payment is
+
+$$
+M=0.8P\frac{r(1+r)^{360}}{(1+r)^{360}-1}.
+$$
+
+I then divide \(12M\) by annual median household income. This is a transparent comparison, not a claim that the median household purchases the median new home.
+
+## Prices outran income over the longer run
+
+First, I adjust both prices and income for inflation using CPI and index each series to 100 in 2000 Q1. This compares growth rates without mixing dollars measured in different years.
+
+```{r}
+#| label: fig-real-trends
+#| fig-cap: "Inflation-adjusted median new-home prices and median household income, indexed to 2000 Q1."
+#| fig-alt: "A two-line chart shows real new-home prices rising about 30 percent from 2000 through 2025 while real median household income rises about 11 percent."
+#| fig-width: 9
+#| fig-height: 5.4
+fig1
+```
+
+By 2025 Q4, the real new-home-price index was 130, while real median income was 111. The gap was not smooth: prices surged after 2020, while income adjusted more gradually. This longer-run divergence explains why the down payment and loan principal became larger relative to household resources.
+
+## Financing costs delivered a second shock
+
+The payment calculation translates prices and rates into the cash flow a buyer would face. Grey bands mark recessions.
+
+```{r}
+#| label: fig-payment-burden
+#| fig-cap: "Illustrative annual mortgage payments as a share of median household income."
+#| fig-alt: "A line chart shows the payment-to-income measure falling after the Great Recession, reaching 21 percent in 2019 Q4, and rising to 27.8 percent in 2025 Q4 after peaking higher in 2023 and 2024."
+#| fig-width: 9
+#| fig-height: 5.4
+fig2
+```
+
+In 2019 Q4, a 20%-down mortgage on the median new-home price implied annual principal and interest equal to 21.0% of median household income. The rate then fell, but prices rose from $327,100 to $414,000 by 2021 Q4. When the mortgage rate later jumped, the burden reached 31.0% in 2024 Q4. It eased to 27.8% in 2025 Q4 as the average rate declined and measured income increased, but remained 6.8 percentage points above 2019.
+
+## Separating price, rate, and income changes
+
+A sequential counterfactual clarifies the arithmetic. Starting from 2019 Q4, I first substitute the 2025 home price, then the 2025 mortgage rate, and finally the 2025 household income.
+
+```{r}
+#| label: fig-decomposition
+#| fig-cap: "Sequential decomposition of the change in the illustrative mortgage-payment burden."
+#| fig-alt: "Four bars show a 21.0 percent burden under 2019 conditions, 26.5 percent after updating price, 35.4 percent after updating the mortgage rate, and 27.8 percent after updating income."
+#| fig-width: 9
+#| fig-height: 5.4
+fig3
+```
+
+The higher home price adds 5.5 percentage points. Updating the mortgage rate from 3.70% to 6.23% adds another 8.9 points. Updating income from $68,700 to $87,460 then removes 7.6 points. The order matters because price and rate interact in the payment formula, so this is a descriptive decomposition rather than a causal estimate. Still, it reveals why looking only at prices misses much of the post-2021 squeeze.
+
+```{r}
+#| label: key-years
+#| tbl-cap: "Selected fourth-quarter inputs and the resulting illustrative burden."
+knitr::kable(
+  key_years,
+  col.names = c("Quarter", "Median new-home price ($)",
+                "Mortgage rate (%)", "Median household income ($)",
+                "Annual payment / income (%)"),
+  format.args = list(big.mark = ",")
+)
+```
+
+## Sources, limitations, and takeaway
+
+The raw CSV files were retrieved on October 5, 2026 through FRED's public graph endpoint. The underlying sources are the [U.S. Census Bureau and HUD for new-home prices](https://fred.stlouisfed.org/series/MSPUS), [Freddie Mac for mortgage rates](https://fred.stlouisfed.org/series/MORTGAGE30US), the [Census Bureau for household income](https://fred.stlouisfed.org/series/MEHOINUSA646N), the [Bureau of Labor Statistics for CPI](https://fred.stlouisfed.org/series/CPIAUCSL), and [FRED's NBER-based recession indicator](https://fred.stlouisfed.org/series/USRECQ). The complete code, raw data, cleaned dataframe, and exported figures are in the [project repository](https://github.com/haozhuo22/blog-post-4-housing-affordability).
+
+This national comparison omits regional variation, existing homes, taxes, insurance, maintenance, credit constraints, and the difficulty of accumulating a down payment. It also combines a median home with a median household rather than tracking the same buyers.
+
+::: {.callout-note title="Takeaway"}
+The affordability squeeze arrived in two stages: home prices raised the amount that had to be financed, and higher mortgage rates made each borrowed dollar more expensive. Income growth offset part of the damage by 2025, but did not restore the 2019 payment burden.
+:::
