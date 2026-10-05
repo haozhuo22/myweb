@@ -1,14 +1,14 @@
 ---
 title: "Blog Post 1"
-subtitle: "Simpson’s Paradox: When Every Group Tells One Story and the Total Tells Another"
+subtitle: "Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability"
 date: 2026-09-14
 lang: en
-categories: [statistics, economics, data-science]
-description: "An admissions example reveals how unequal group sizes reverse a comparison—and how to interpret the result responsibly."
+categories: [statistics, mathematics, inference]
+description: "A coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty."
 format:
   html:
     theme: cosmo
-    toc: false
+    toc: true
     code-fold: true
     code-summary: "Show reproducible R code"
     embed-resources: true
@@ -19,134 +19,165 @@ execute:
   message: false
 ---
 
-## A headline that gets the comparison wrong
+## One expression, two directions
 
-Imagine a university with two departments: one less selective and one more selective. Applicants belong to Group A or Group B. A headline reports that 36% of Group A applicants were admitted, compared with 74% of Group B. That looks like a major advantage for B.
+Suppose a coin lands heads 7 times in 10 independent flips. The unknown probability of heads is \(p\). It is tempting to say, “the probability that \(p=0.7\) is largest.” That sentence quietly confuses **probability** with **likelihood**.
 
-But inside **each department**, A has the higher admission rate. How can A do better everywhere and still do worse overall?
+Probability reasons forward: if \(p\) were known, how probable would the data be? For \(K\sim\operatorname{Binomial}(n,p)\),
 
-This is **Simpson’s paradox**: an association can reverse when we combine groups. It challenges our instinct that a consistent pattern in every part must survive in the whole. The problem is not faulty arithmetic; it is a change in who receives the most weight.
+$$
+\Pr(K=k\mid p)=\binom{n}{k}p^k(1-p)^{n-k}.
+$$
 
-## Build the puzzle from four rows
+Likelihood reverses what varies. After observing \(k\), the data are fixed and candidate values of \(p\) are compared:
 
-All counts below are **invented for this explanation**, not real university records. There are 100 applicants in each group. The labels describe only department selectivity; we have no information about applicants’ qualifications.
+$$
+L(p\mid k,n)=\binom{n}{k}p^k(1-p)^{n-k}, \qquad 0\le p\le 1.
+$$
+
+The formula is identical, but its role is different. As a function of \(k\), it is a probability distribution when \(p\) is fixed. As a function of \(p\), it is a likelihood when \(k\) is fixed. A likelihood need not sum or integrate to one over parameter values. Therefore, \(L(0.7)\) is not \(\Pr(p=0.7\mid K=7)\); a probability distribution for \(p\) requires additional assumptions, such as a Bayesian prior.
+
+## Comparing candidate coins
+
+Because likelihoods can be extremely small, it is useful to divide every value by the largest one. This creates a **relative likelihood** whose maximum is 1 without changing which \(p\) fits best.
 
 ```{r}
-#| label: admissions-data
-# All data are defined here; no downloads or random simulation are needed.
-admissions <- data.frame(
-  group = c("A", "B", "A", "B"),
-  department = c("Less selective", "Less selective",
-                 "More selective", "More selective"),
-  applicants = c(10, 90, 90, 10),
-  admitted = c(9, 72, 27, 2)
-)
-admissions$rate <- admissions$admitted / admissions$applicants
+#| label: likelihood-data
+#| tbl-cap: "Selected candidate values for the probability of heads."
+n <- 10
+k <- 7
 
-within_table <- data.frame(
-  Department = admissions$department,
-  Group = admissions$group,
-  Applicants = admissions$applicants,
-  Admitted = admissions$admitted,
-  `Admission rate` = sprintf("%.0f%%", 100 * admissions$rate),
-  check.names = FALSE
-)
-knitr::kable(within_table,
-             caption = "Synthetic admissions counts and within-department rates.")
+candidate_p <- c(0.30, 0.50, 0.70, 0.90)
+candidate_loglik <- dbinom(k, size = n, prob = candidate_p, log = TRUE)
+candidate_relative <- exp(candidate_loglik - max(candidate_loglik))
 
-# Pool counts first, then divide: do not average percentages equally.
-totals <- aggregate(cbind(applicants, admitted) ~ group,
-                    data = admissions, FUN = sum)
-totals$rate <- totals$admitted / totals$applicants
 knitr::kable(data.frame(
-  Group = totals$group,
-  Applicants = totals$applicants,
-  Admitted = totals$admitted,
-  `Overall admission rate` = sprintf("%.0f%%", 100 * totals$rate),
+  `Candidate p` = sprintf("%.2f", candidate_p),
+  `Probability of exactly 7 heads` = sprintf("%.4f", exp(candidate_loglik)),
+  `Relative likelihood` = sprintf("%.3f", candidate_relative),
   check.names = FALSE
-), caption = "Pooling the same observations reverses the comparison.")
+))
 ```
 
-In the less selective department, A leads 90% to 80%. In the more selective department, A leads 30% to 20%. Both differences are ten **percentage points**. Yet overall, A admits 36 of 100 applicants and B admits 74 of 100. B’s aggregate advantage is 38 percentage points.
+Among these candidates, \(p=0.7\) supports the observed result most strongly. A smooth curve shows that it is also the best value among all candidates between 0 and 1.
 
 ```{r}
-#| label: fig-reversal
-#| fig-cap: "A leads within both departments, but B leads overall. All panels use the same percentage scale; the overall bars pool counts rather than averaging departmental rates equally."
-#| fig-alt: "Grouped bars show A versus B admission rates: 90 versus 80 percent in the less selective department, 30 versus 20 percent in the more selective department, and 36 versus 74 percent overall."
-#| fig-width: 8
+#| label: fig-likelihood
+#| fig-cap: "Relative likelihood after observing 7 heads in 10 flips. The curve compares parameter values; it is not a probability density for p."
+#| fig-alt: "A smooth likelihood curve reaches its maximum of one at p equals 0.7 and falls toward zero near p equals zero and one."
+#| fig-width: 7.5
 #| fig-height: 4.6
-rates <- rbind(
-  A = c(admissions$rate[1], admissions$rate[3], totals$rate[totals$group == "A"]),
-  B = c(admissions$rate[2], admissions$rate[4], totals$rate[totals$group == "B"])
-)
-colnames(rates) <- c("Less selective", "More selective", "Overall")
+p_grid <- seq(0.001, 0.999, length.out = 1000)
+loglik_10 <- dbinom(k, size = n, prob = p_grid, log = TRUE)
+relative_10 <- exp(loglik_10 - max(loglik_10))
+
 local({
-  previous <- par(mar = c(4, 4, 2, 1))
-  on.exit(par(previous))
-  positions <- barplot(100 * rates, beside = TRUE,
-    col = c("#246B8E", "#D07629"), border = NA, ylim = c(0, 112),
-    ylab = "Admission rate (%)", las = 1)
-  text(positions, 100 * rates + 4,
-       labels = paste0(round(100 * rates), "%"), cex = 0.9)
-  legend("topright", legend = c("Group A", "Group B"),
-         fill = c("#246B8E", "#D07629"), bty = "n", horiz = TRUE)
+  old <- par(mar = c(4.2, 4.2, 1.2, 0.8))
+  on.exit(par(old))
+  plot(p_grid, relative_10, type = "l", lwd = 3, col = "#246B8E",
+       xlab = "Candidate probability of heads, p",
+       ylab = "Relative likelihood", ylim = c(0, 1.04), las = 1)
+  abline(v = k / n, lty = 2, col = "#C44E52")
+  points(k / n, 1, pch = 19, col = "#C44E52")
+  text(k / n, 0.91, expression(hat(p) == 0.7), pos = 4,
+       col = "#C44E52")
 })
 ```
 
-## The hidden ingredient: different weights
+## Why the maximum is the sample proportion
 
-Most A applicants choose the harder department, whereas most B applicants choose the easier one. Each overall rate is a **weighted average**: a department’s weight is its share of that group’s applicants.
+Products are easier to differentiate after taking logarithms. Since logarithms are strictly increasing, maximizing \(L\) is equivalent to maximizing the log-likelihood:
 
 $$
-\begin{aligned}
-R_A &= 0.10(0.90) + 0.90(0.30) = 0.36,\\
-R_B &= 0.90(0.80) + 0.10(0.20) = 0.74.
-\end{aligned}
+\ell(p)=\log L(p)=\log\binom{n}{k}+k\log p+(n-k)\log(1-p).
 $$
 
-Picture two baskets of exam scores. One basket contains mostly difficult exams; the other contains mostly easy exams. Comparing basket averages mixes performance with exam difficulty. Admissions rates work the same way: the overall comparison mixes within-department outcomes with application patterns.
+For (0<k<n), differentiate and set the score equal to zero:
 
-This explains the surprise. We mentally compare A and B using the same departmental mix, but the aggregate calculation uses different mixes. Having the same total number of applicants does not solve this problem. Their distribution across departments matters.
+$$
+\ell'(p)=\frac{k}{p}-\frac{n-k}{1-p}=0
+\quad\Longrightarrow\quad
+k(1-p)=(n-k)p
+\quad\Longrightarrow\quad
+\widehat p=\frac{k}{n}.
+$$
 
-## Compare the groups using a common mix
+This stationary point is the unique maximum because
 
-We can separate the composition effect by giving both groups the same weights. Across all applicants, half apply to each department, so a 50–50 reference mix is natural here.
+$$
+\ell''(p)=-\frac{k}{p^2}-\frac{n-k}{(1-p)^2}<0
+\qquad (0<p<1).
+$$
+
+Thus the entire log-likelihood is strictly concave. If \(k=0\) or \(k=n\), there is no interior stationary point; the maximum occurs at the boundary, \(\widehat p=0\) or \(1\). These cases matter because blindly solving a derivative equation would miss them.
+
+## Same estimate, different evidence
+
+Now compare 7 heads in 10 flips with 70 heads in 100 flips. Both give \(\widehat p=0.7\), but the larger experiment should tell us more. Its likelihood curve is much sharper.
 
 ```{r}
-#| label: standardize
-# Common weights come from the pooled applicant distribution.
-reference <- aggregate(applicants ~ department, admissions, sum)
-reference$weight <- reference$applicants / sum(reference$applicants)
-weighted_data <- merge(admissions, reference[c("department", "weight")],
-                       by = "department")
-weighted_data$contribution <- weighted_data$rate * weighted_data$weight
-adjusted <- aggregate(contribution ~ group, weighted_data, sum)
-knitr::kable(data.frame(
-  Group = adjusted$group,
-  `Rate with a common departmental mix` =
-    sprintf("%.0f%%", 100 * adjusted$contribution),
-  check.names = FALSE
-), caption = "Standardized rates answer a different question from observed overall rates.")
+#| label: fig-sample-size
+#| fig-cap: "Both samples have the same maximum-likelihood estimate, but 70 heads in 100 flips produces a more concentrated likelihood."
+#| fig-alt: "Two relative-likelihood curves peak at 0.7. The curve for 70 heads out of 100 is considerably narrower than the curve for 7 out of 10."
+#| fig-width: 7.5
+#| fig-height: 4.6
+relative_likelihood <- function(p, successes, trials) {
+  values <- dbinom(successes, size = trials, prob = p, log = TRUE)
+  exp(values - max(values))
+}
 
-# Verify the numerical claims and the reversal.
-stopifnot(all(admissions$admitted <= admissions$applicants),
-          isTRUE(all.equal(as.numeric(totals$rate), c(0.36, 0.74))),
-          all(rates[1, 1:2] > rates[2, 1:2]),
-          isTRUE(all.equal(as.numeric(adjusted$contribution), c(0.60, 0.50))))
+rel_10 <- relative_likelihood(p_grid, 7, 10)
+rel_100 <- relative_likelihood(p_grid, 70, 100)
+
+local({
+  old <- par(mar = c(4.2, 4.2, 1.2, 0.8))
+  on.exit(par(old))
+  plot(p_grid, rel_10, type = "l", lwd = 3, col = "#D07629",
+       xlab = "Candidate probability of heads, p",
+       ylab = "Relative likelihood", ylim = c(0, 1.04), las = 1)
+  lines(p_grid, rel_100, lwd = 3, col = "#246B8E")
+  abline(v = 0.7, lty = 3, col = "grey35")
+  legend("topleft", c("7 heads / 10 flips", "70 heads / 100 flips"),
+         col = c("#D07629", "#246B8E"), lwd = 3, bty = "n")
+})
 ```
 
-Now A’s standardized rate is 60% and B’s is 50%. These are hypothetical rates calculated by retaining each group’s departmental rates while imposing a common application mix. They are not additional observed admissions or predictions about what would happen if applicants changed departments.
+The connection is mathematical. At the maximum,
 
-## Which comparison answers the right question?
+$$
+-\ell''(\widehat p)=\frac{n}{\widehat p(1-\widehat p)}.
+$$
 
-For “What fraction of each group’s actual applicants was admitted?”, the overall rates are correct. For “How do their rates compare within departments?”, use the departmental rates. For “How do they compare under a common departmental mix?”, standardized rates are useful. No arithmetic result contradicts another; each answers a different question.
+Larger \(n\) creates greater curvature and a narrower peak. In regular large samples, the inverse curvature gives the approximation
 
-None proves discrimination, fairness, or a causal effect of group membership. Qualifications and other selection processes remain unobserved. Department choice could itself reflect unequal access, so adjusting for it might conceal part of the mechanism we care about. Choosing what to condition on requires understanding the process, not automatically splitting every dataset into smaller groups.
+$$
+\operatorname{SE}(\widehat p)\approx
+\sqrt{\frac{\widehat p(1-\widehat p)}{n}}.
+$$
 
-## A lesson beyond this example
+It equals about 0.145 for 7/10 and 0.046 for 70/100. This approximation can be poor for small samples or estimates near 0 or 1, so the shape of the likelihood remains informative.
 
-Simpson’s [1951 paper](https://doi.org/10.1111/j.2517-6161.1951.tb00088.x) examined relationships in contingency tables. Admissions also became a famous application in [Bickel, Hammel, and O’Connell’s Berkeley study](https://doi.org/10.1126/science.187.4175.398). Our deliberately simplified numbers are not taken from either paper. They demonstrate an exact arithmetic reversal, not a statistical estimate; there are no confidence intervals or claims about a real population.
+```{r}
+#| label: verification
+#| include: false
+p_hat <- k / n
+score_at_mle <- k / p_hat - (n - k) / (1 - p_hat)
+curvature <- -k / p_hat^2 - (n - k) / (1 - p_hat)^2
+se_10 <- sqrt(p_hat * (1 - p_hat) / 10)
+se_100 <- sqrt(p_hat * (1 - p_hat) / 100)
+
+stopifnot(abs(score_at_mle) < 1e-12,
+          curvature < 0,
+          abs(p_grid[which.max(relative_10)] - p_hat) < 0.002,
+          abs(max(relative_10) - 1) < 1e-12,
+          abs(se_10 - 0.1449138) < 1e-6,
+          abs(se_100 - 0.04582576) < 1e-6)
+```
+
+## Assumptions, source, and takeaway
+
+The numbers are constructed for this explanation; no external dataset is used. The binomial model assumes a fixed number of independent flips with one constant \(p\). Dependence or a changing coin would require a different likelihood. R. A. Fisher’s [1922 paper on the foundations of theoretical statistics](https://doi.org/10.1098/rsta.1922.0009) helped formalize likelihood as distinct from inverse probability.
 
 ::: {.callout-note title="Takeaway"}
-Before trusting an overall comparison, inspect subgroup rates **and their denominators**. Ask whether different group compositions drive the result, then choose the comparison that fits your question. A convincing explanation needs the rates, the weights, and the context.
+Maximum likelihood ranks parameter values by how well they explain fixed, observed data. The maximizer \(\widehat p=k/n\) is a point estimate, not the probability that the parameter is correct. The peak’s width supplies the missing second lesson: two identical estimates can carry very different amounts of information.
 :::
