@@ -1,6 +1,5 @@
 ---
-title: "Blog Post 2"
-subtitle: "Finding Room to Roam: Which National Parks Offer More Space per Visitor?"
+title: "Finding Room to Roam: Which National Parks Offer More Space per Visitor?"
 date: 2026-09-20
 categories: [web-scraping, travel, data-science]
 description: "A respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist."

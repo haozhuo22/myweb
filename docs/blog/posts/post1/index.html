@@ -9,7 +9,7 @@
 <meta name="dcterms.date" content="2026-09-14">
 <meta name="description" content="A coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.">
 
-<title>Blog Post 1 – Student Name</title>
+<title>Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability – Student Name</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -4031,7 +4031,7 @@ vertical-align: -.125em;
   }
 }</script>
 
-
+  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var head = document.getElementsByTagName("head")[0];
@@ -4039,7 +4039,7 @@ vertical-align: -.125em;
       link.rel = "stylesheet";
       link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
       head.appendChild(link);
-
+      
       function renderMathElements() {
         var mathElements = document.getElementsByClassName("math");
         var macros = [];
@@ -4063,14 +4063,14 @@ vertical-align: -.125em;
       var script = document.createElement("script");
       script.src = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
       script.onload = renderMathElements;
-
+      
       // Check for RequireJS and AMD detection as it conflicts with KaTeX loading.
       if (typeof require === 'function' && typeof define === 'function' && define.amd) {
         // Disable require.js AMD detection temporarily, as it conflicts with KaTeX loading using CommonJS
         var disableAmdScript = document.createElement("script");
         disableAmdScript.textContent = 'window._amd_backup = window.define.amd; window.define.amd = false;';
         head.appendChild(disableAmdScript);
-
+        
         // overwrite onload to restore Require.js AMD detection
         script.onload = function() {
           // Restore Require.js AMD detection
@@ -4083,7 +4083,7 @@ vertical-align: -.125em;
       head.appendChild(script);
     });
   </script>
-
+  
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -4174,7 +4174,7 @@ margin-top: 0.5em;
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-
+   
   <ul>
   <li><a href="#one-expression-two-directions" id="toc-one-expression-two-directions" class="nav-link active" data-scroll-target="#one-expression-two-directions">One expression, two directions</a></li>
   <li><a href="#comparing-candidate-coins" id="toc-comparing-candidate-coins" class="nav-link" data-scroll-target="#comparing-candidate-coins">Comparing candidate coins</a></li>
@@ -4189,8 +4189,7 @@ margin-top: 0.5em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog Post 1</h1>
-<p class="subtitle lead">Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability</p>
+<h1 class="title">Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability</h1>
   <div class="quarto-categories">
     <div class="quarto-category">statistics</div>
     <div class="quarto-category">mathematics</div>
@@ -4207,17 +4206,17 @@ margin-top: 0.5em;
 
 <div class="quarto-title-meta">
 
-
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
       <p class="date">September 14, 2026</p>
     </div>
   </div>
-
-
+  
+    
   </div>
-
+  
 
 
 </header>
@@ -4827,7 +4826,7 @@ Figure 2: Both samples have the same maximum-likelihood estimate, but 70 heads 
 <p>© 2026 Student Name</p>
 </div>
     <div class="nav-footer-right">
-
+       
     </div>
   </div>
 </footer>
