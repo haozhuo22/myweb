@@ -1,0 +1,103 @@
+---
+title: "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden"
+subtitle: "County patterns and changes from the 2019 and 2024 American Community Survey"
+date: 2026-10-19
+author: "Haozhuo Zhang"
+lang: en
+categories: [GIS, housing, data-visualization, Census]
+description: "County maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019."
+format:
+  html:
+    theme: flatly
+    toc: true
+    code-fold: true
+    code-summary: "Show reproducible R code"
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/02_analysis.R")
+```
+
+## The question: where is rent hardest to carry?
+
+Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: **Where were renters most cost burdened in 2024, and how did that geography change after 2019?** The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.
+
+I use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, *Gross Rent as a Percentage of Household Income*. The Department of Housing and Urban Development's conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate
+
+$$
+\text{cost-burden rate}=\frac{R_{30\text{--}34.9}+R_{35\text{--}39.9}+R_{40\text{--}49.9}+R_{50+}}{R_{\text{total}}-R_{\text{not computed}}}\times100.
+$$
+
+The denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the [project repository](https://github.com/haozhuo22/blog-post-5-renter-cost-burden).
+
+## A national problem with clear regional concentrations
+
+```{r}
+#| label: fig-current-map
+#| echo: false
+#| fig-cap: "County renter cost-burden rates in 2024. Darker counties have a larger share of renter households spending at least 30% of income on gross rent."
+#| fig-alt: "A county map of the contiguous United States shows high renter cost burdens concentrated across Florida, coastal California, parts of the Southwest, and several metropolitan and university-centered counties."
+#| fig-width: 10.5
+#| fig-height: 7
+figure1
+```
+
+Across the 50 states and District of Columbia, the population-weighted cost-burden rate was **51.1% in 2024**. The map shows that this is not simply a big-city pattern. High-burden clusters extend across much of Florida, coastal California, parts of the Southwest, and selected counties in the Northeast and Southeast. Several university-centered places also stand out because student-heavy rental markets combine low reported current income with substantial rent.
+
+Among counties with at least 5,000 renter households in the computable denominator, Lincoln Parish, Louisiana (66.7%), Watauga County, North Carolina (65.9%), and Osceola County, Florida (65.4%) had the highest estimated rates. The size threshold keeps very small counties with volatile estimates from dominating the ranking, but it does not make these estimates exact.
+
+## Change was uneven, even within states
+
+The weighted national rate rose from **49.6% in 2019 to 51.1% in 2024**, a 1.5 percentage-point increase. Yet the change map is much less uniform than that summary suggests.
+
+```{r}
+#| label: fig-change-map
+#| echo: false
+#| fig-cap: "Change in county renter cost-burden rates between the 2015–2019 and 2020–2024 ACS periods. Red indicates an increase; blue indicates a decrease."
+#| fig-alt: "A diverging county map shows increases and decreases interspersed across the country, with many increases in Texas, Florida, and the interior West."
+#| fig-width: 10.5
+#| fig-height: 7
+figure2
+```
+
+The mosaic of red and blue is substantive: state averages conceal neighboring counties moving in opposite directions. Still, some broader shifts are visible. Increases are common across Texas, Florida, and parts of the interior West, while improvement is more scattered. Gray Connecticut regions are a data-comparability issue, not missing analysis: after 2019, the Census Bureau replaced that state's counties with planning regions, so a direct county match would be misleading.
+
+Aggregating county counts before calculating state rates gives larger counties their proper population weight. Nevada recorded the largest increase, from 49.6% to 55.9% (+6.3 percentage points). Texas (+3.9), Florida (+3.8), Arizona (+3.5), and Georgia (+3.4) followed. Vermont moved in the other direction, falling 2.2 points.
+
+```{r}
+#| label: fig-state-change
+#| echo: false
+#| fig-cap: "States with the largest absolute changes in the share of renters who were cost burdened."
+#| fig-alt: "A horizontal chart shows Nevada with the largest increase at 6.3 percentage points and Vermont with the largest decline at 2.2 points."
+#| fig-width: 9
+#| fig-height: 6.5
+figure3
+```
+
+## What the pattern means—and what it cannot prove
+
+The geographic evidence suggests that renter stress is both widespread and locally produced. A state-level policy response may miss county markets where the burden is much higher or changing faster. Housing agencies should therefore pair broad affordability programs with local monitoring, especially in rapidly worsening counties.
+
+These are descriptive ACS estimates, not causal effects. Five-year estimates pool adjacent years, and the two periods overlap neither in time nor economic conditions. Sampling error is larger in small counties, and the maps do not isolate rent growth from changes in renter income or household composition. The practical takeaway is nevertheless clear: **a majority of U.S. renters now face the standard cost-burden threshold, and the places experiencing the sharpest deterioration are not evenly distributed.**
+
+## Reproducible workflow
+
+```{r}
+#| eval: false
+# Download official Census data and boundary files.
+source("R/01_download_data.R")
+
+# Clean both ACS years, calculate weighted rates, join spatial boundaries,
+# and export the three figures and analysis-ready CSV files.
+source("R/02_analysis.R")
+```
+
+**Data sources:** [2019 ACS five-year replicate estimates](https://www2.census.gov/programs-surveys/acs/replicate_estimates/2019/data/5-year/050/), [2024 ACS five-year replicate estimates](https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/050/), and [2024 Census cartographic boundary files](https://www2.census.gov/geo/tiger/GENZ2024/shp/).
+

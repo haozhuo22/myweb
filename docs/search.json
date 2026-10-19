@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Priced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden\n\n\nCounty patterns and changes from the 2019 and 2024 American Community Survey\n\n\nCounty maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019.\n\n\n\n\n\nOct 19, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nPriced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -98,6 +98,69 @@
     "text": "Reproducibility and source\nThe complete R script, weighted aggregate tables, and exported figures are available in the project repository. Raw IPUMS microdata are excluded under the IPUMS terms; registered users can reproduce the extract using the documented samples and variables.\nCitation: Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles, J. Robert Warren, Daniel Backman, Etienne Breton, Grace Cooper, Julia A. Rivera Drew, Stephanie Richards, David Van Riper, and Kari C.W. Williams. IPUMS CPS: Version 13.0 [dataset]. Minneapolis, MN: IPUMS, 2025. https://doi.org/10.18128/D030.V13.0."
   },
   {
+    "objectID": "blog/posts/post5/index.html",
+    "href": "blog/posts/post5/index.html",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "",
+    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
+    "href": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "",
+    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
+    "href": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "A national problem with clear regional concentrations",
+    "text": "A national problem with clear regional concentrations\n\n\n\n\n\n\n\n\nFigure 1: County renter cost-burden rates in 2024. Darker counties have a larger share of renter households spending at least 30% of income on gross rent.\n\n\n\n\n\nAcross the 50 states and District of Columbia, the population-weighted cost-burden rate was 51.1% in 2024. The map shows that this is not simply a big-city pattern. High-burden clusters extend across much of Florida, coastal California, parts of the Southwest, and selected counties in the Northeast and Southeast. Several university-centered places also stand out because student-heavy rental markets combine low reported current income with substantial rent.\nAmong counties with at least 5,000 renter households in the computable denominator, Lincoln Parish, Louisiana (66.7%), Watauga County, North Carolina (65.9%), and Osceola County, Florida (65.4%) had the highest estimated rates. The size threshold keeps very small counties with volatile estimates from dominating the ranking, but it does not make these estimates exact."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
+    "href": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "Change was uneven, even within states",
+    "text": "Change was uneven, even within states\nThe weighted national rate rose from 49.6% in 2019 to 51.1% in 2024, a 1.5 percentage-point increase. Yet the change map is much less uniform than that summary suggests.\n\n\n\n\n\n\n\n\nFigure 2: Change in county renter cost-burden rates between the 2015–2019 and 2020–2024 ACS periods. Red indicates an increase; blue indicates a decrease.\n\n\n\n\n\nThe mosaic of red and blue is substantive: state averages conceal neighboring counties moving in opposite directions. Still, some broader shifts are visible. Increases are common across Texas, Florida, and parts of the interior West, while improvement is more scattered. Gray Connecticut regions are a data-comparability issue, not missing analysis: after 2019, the Census Bureau replaced that state’s counties with planning regions, so a direct county match would be misleading.\nAggregating county counts before calculating state rates gives larger counties their proper population weight. Nevada recorded the largest increase, from 49.6% to 55.9% (+6.3 percentage points). Texas (+3.9), Florida (+3.8), Arizona (+3.5), and Georgia (+3.4) followed. Vermont moved in the other direction, falling 2.2 points.\n\n\n\n\n\n\n\n\nFigure 3: States with the largest absolute changes in the share of renters who were cost burdened."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
+    "href": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "What the pattern means—and what it cannot prove",
+    "text": "What the pattern means—and what it cannot prove\nThe geographic evidence suggests that renter stress is both widespread and locally produced. A state-level policy response may miss county markets where the burden is much higher or changing faster. Housing agencies should therefore pair broad affordability programs with local monitoring, especially in rapidly worsening counties.\nThese are descriptive ACS estimates, not causal effects. Five-year estimates pool adjacent years, and the two periods overlap neither in time nor economic conditions. Sampling error is larger in small counties, and the maps do not isolate rent growth from changes in renter income or household composition. The practical takeaway is nevertheless clear: a majority of U.S. renters now face the standard cost-burden threshold, and the places experiencing the sharpest deterioration are not evenly distributed."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#reproducible-workflow",
+    "href": "blog/posts/post5/index.html#reproducible-workflow",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "Reproducible workflow",
+    "text": "Reproducible workflow\n\n\nShow reproducible R code\n# Download official Census data and boundary files.\nsource(\"R/01_download_data.R\")\n\n# Clean both ACS years, calculate weighted rates, join spatial boundaries,\n# and export the three figures and analysis-ready CSV files.\nsource(\"R/02_analysis.R\")\n\n\nData sources: 2019 ACS five-year replicate estimates, 2024 ACS five-year replicate estimates, and 2024 Census cartographic boundary files."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Haozhuo Zhang",
+    "section": "",
+    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Download my resume here:"
+  },
+  {
+    "objectID": "resume.html#resume-pdf",
+    "href": "resume.html#resume-pdf",
+    "title": "Resume",
+    "section": "Resume PDF",
+    "text": "Resume PDF"
+  },
+  {
     "objectID": "blog/posts/post1/index.html",
     "href": "blog/posts/post1/index.html",
     "title": "Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability",
@@ -138,27 +201,6 @@
     "title": "Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability",
     "section": "Assumptions, source, and takeaway",
     "text": "Assumptions, source, and takeaway\nThe numbers are constructed for this explanation; no external dataset is used. The binomial model assumes a fixed number of independent flips with one constant (p). Dependence or a changing coin would require a different likelihood. R. A. Fisher’s 1922 paper on the foundations of theoretical statistics helped formalize likelihood as distinct from inverse probability.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nMaximum likelihood ranks parameter values by how well they explain fixed, observed data. The maximizer (p=k/n) is a point estimate, not the probability that the parameter is correct. The peak’s width supplies the missing second lesson: two identical estimates can carry very different amounts of information."
-  },
-  {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "Download my resume here:"
-  },
-  {
-    "objectID": "resume.html#resume-pdf",
-    "href": "resume.html#resume-pdf",
-    "title": "Resume",
-    "section": "Resume PDF",
-    "text": "Resume PDF"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Haozhuo Zhang",
-    "section": "",
-    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
   },
   {
     "objectID": "blog/posts/post2/index.html",
