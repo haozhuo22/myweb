@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden\n\n\nCounty patterns and changes from the 2019 and 2024 American Community Survey\n\n\nCounty maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019.\n\n\n\n\n\nOct 19, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nPriced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python\n\n\nA reproducible tutorial on intergenerational elasticity and life-cycle bias\n\n\nA step-by-step Python and SQLite tutorial showing how income timing and multi-year averages change estimates of intergenerational persistence.\n\n\n\n\n\nOct 21, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nRent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden\n\n\nCounty patterns and changes from the 2019 and 2024 American Community Survey\n\n\nCounty maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019.\n\n\n\n\n\nOct 19, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nPriced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -140,27 +140,6 @@
     "text": "Reproducible workflow\n\n\nShow reproducible R code\n# Download official Census data and boundary files.\nsource(\"R/01_download_data.R\")\n\n# Clean both ACS years, calculate weighted rates, join spatial boundaries,\n# and export the three figures and analysis-ready CSV files.\nsource(\"R/02_analysis.R\")\n\n\nData sources: 2019 ACS five-year replicate estimates, 2024 ACS five-year replicate estimates, and 2024 Census cartographic boundary files."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Haozhuo Zhang",
-    "section": "",
-    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
-  },
-  {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "Download my resume here:"
-  },
-  {
-    "objectID": "resume.html#resume-pdf",
-    "href": "resume.html#resume-pdf",
-    "title": "Resume",
-    "section": "Resume PDF",
-    "text": "Resume PDF"
-  },
-  {
     "objectID": "blog/posts/post1/index.html",
     "href": "blog/posts/post1/index.html",
     "title": "Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability",
@@ -203,6 +182,83 @@
     "text": "Assumptions, source, and takeaway\nThe numbers are constructed for this explanation; no external dataset is used. The binomial model assumes a fixed number of independent flips with one constant (p). Dependence or a changing coin would require a different likelihood. R. A. Fisher’s 1922 paper on the foundations of theoretical statistics helped formalize likelihood as distinct from inverse probability.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nMaximum likelihood ranks parameter values by how well they explain fixed, observed data. The maximizer (p=k/n) is a point estimate, not the probability that the parameter is correct. The peak’s width supplies the missing second lesson: two identical estimates can carry very different amounts of information."
   },
   {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Download my resume here:"
+  },
+  {
+    "objectID": "resume.html#resume-pdf",
+    "href": "resume.html#resume-pdf",
+    "title": "Resume",
+    "section": "Resume PDF",
+    "text": "Resume PDF"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Haozhuo Zhang",
+    "section": "",
+    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
+  },
+  {
+    "objectID": "blog/posts/post6/index.html",
+    "href": "blog/posts/post6/index.html",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "",
+    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
+    "href": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "",
+    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
+    "href": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 1: construct parent–child links",
+    "text": "Step 1: construct parent–child links\nA self-join treats the people table as two temporary tables. c supplies children and p supplies parents. The ON clause requires a common family identifier, while the role conditions prevent child-to-child or parent-to-parent matches.\nSELECT\n    c.family_id,\n    c.person_id AS child_id,\n    p.person_id AS parent_id\nFROM people AS c\nJOIN people AS p\n  ON c.family_id = p.family_id\n AND c.role = 'child'\n AND p.role = 'parent';\nThis produces exactly 2,000 unique links. In real data I would also inspect duplicate links, missing identifiers, relationship codes, and household changes before proceeding."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
+    "href": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 2: turn annual income into economic status",
+    "text": "Step 2: turn annual income into economic status\nThe next query uses GROUP BY person_id so every individual contributes one row. CASE WHEN selects a particular age; AVG combines repeated observations. Common table expressions keep each transformation readable.\nWITH parent_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 45 THEN income END) AS income_age45,\n    AVG(CASE WHEN age BETWEEN 40 AND 50 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n),\nchild_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 25 THEN income END) AS income_age25,\n    MAX(CASE WHEN age = 35 THEN income END) AS income_age35,\n    AVG(CASE WHEN age BETWEEN 30 AND 40 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n)\nSELECT l.*, p.income_age45, p.income_avg,\n       c.income_age25, c.income_age35, c.income_avg\nFROM parent_child_links AS l\nJOIN parent_income AS p ON l.parent_id = p.person_id\nJOIN child_income AS c ON l.child_id = c.person_id;\nThe resulting analysis file has one family per row and preserves both IDs, making every estimate auditable."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#step-3-estimate-the-ige",
+    "href": "blog/posts/post6/index.html#step-3-estimate-the-ige",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 3: estimate the IGE",
+    "text": "Step 3: estimate the IGE\nThe standard log–log model is\n\\[\n\\log(Y_i^{child})=\\alpha+\\beta\\log(Y_i^{parent})+\\varepsilon_i.\n\\]\nThe slope () is the IGE: an approximate 10% difference in parental income is associated with a (10)% difference in child income. Larger values mean more persistence and less mobility.\n\nUsing one observation for the parent at age 45 and the child at age 25 gives an IGE of 0.218. Moving the child observation to age 35 raises it to 0.312. Averaging income across ages 40–50 for parents and 30–40 for children produces 0.405, almost exactly the known value."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
+    "href": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Why a young observation creates life-cycle bias",
+    "text": "Why a young observation creates life-cycle bias\nWorkers do not follow identical earnings paths. In the simulation, people with higher long-run income have steeper early-career growth. At age 25, their current income has not yet revealed their eventual position. Regressing this incomplete signal on parental income compresses the child-income gradient.\n\nThis is life-cycle bias: the same families imply different mobility depending on the child’s age at measurement. It is a property of the measurement strategy, not evidence that mobility literally changes as these children age."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#why-averaging-helps",
+    "href": "blog/posts/post6/index.html#why-averaging-helps",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Why averaging helps",
+    "text": "Why averaging helps\nEven at a sensible age, annual income contains bonuses, unemployment spells, and other temporary shocks. Averaging reduces this noise for both generations.\n\nWith one mid-career year for each generation, the estimate is 0.312. It rises to 0.370 with three years, 0.392 with five, and 0.405 with eleven. The practical lesson is direct: match people carefully, measure income at comparable life-cycle stages, and use multi-year averages whenever the panel permits."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#reproduce-the-tutorial",
+    "href": "blog/posts/post6/index.html#reproduce-the-tutorial",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Reproduce the tutorial",
+    "text": "Reproduce the tutorial\npython3 -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\npython analysis.py\nThe complete SQLite database, generated raw tables, matched dataframe, coefficient tables, figures, and source code are available in the project repository."
+  },
+  {
     "objectID": "blog/posts/post2/index.html",
     "href": "blog/posts/post2/index.html",
     "title": "Finding Room to Roam: Which National Parks Offer More Space per Visitor?",
@@ -221,7 +277,7 @@
     "href": "blog/posts/post2/index.html#one-respectful-request",
     "title": "Finding Room to Roam: Which National Parks Offer More Space per Visitor?",
     "section": "One respectful request",
-    "text": "One respectful request\nI scraped the Wikipedia list of U.S. national parks on September 20, 2026. Its table reports 2023 acreage and 2025 recreation visits, citing National Park Service sources. Wikipedia text is available under CC BY-SA 4.0, and this post attributes and links the source rather than copying its prose or images. I also checked Wikipedia’s robots.txt: this ordinary article path is not disallowed. The analysis sends one request, accesses no login or restricted page, and does not crawl individual park pages.\nAs a provenance check, I compared the scraped leaders with the official NPS Annual Visitation by Park report. The 2025 totals match exactly: Death Valley 1,320,134, Everglades 778,198, and Big Bend 568,104. These are recreation visits, not unique people. The NPS portal remains the appropriate place to verify later revisions before booking.\n\n\nShow reproducible R code\nlibrary(rvest)\nlibrary(dplyr)\nlibrary(stringr)\nlibrary(readr)\nlibrary(ggplot2)\n\nurl &lt;- \"https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States\"\n\n# One HTTP request; select the first table by its semantic CSS class.\npage &lt;- read_html(url)\nraw &lt;- page |&gt;\n  html_element(\"table.wikitable\") |&gt;\n  html_table(fill = TRUE)\n\n# Footnote numbers in column names can change, so locate columns by prefix.\narea_col &lt;- names(raw)[str_detect(names(raw), \"^Area\")][1]\nvisit_col &lt;- names(raw)[str_detect(names(raw), \"^Recreation visitors\")][1]\nstopifnot(!is.na(area_col), !is.na(visit_col))\n\nparks &lt;- raw |&gt;\n  transmute(\n    park = Name |&gt;\n      str_remove_all(\"[†‡*]\") |&gt;\n      str_squish(),\n    location = Location |&gt;\n      str_remove(\"\\\\s*\\\\.mw-parser.*$\") |&gt;\n      str_remove(\"\\\\s+\\\\d.*$\") |&gt;\n      str_squish(),\n    area_acres = parse_number(.data[[area_col]]),\n    visits_2025 = parse_number(.data[[visit_col]])\n  ) |&gt;\n  mutate(visits_per_1000_acres = visits_2025 / (area_acres / 1000))\n\n# Fail loudly if the page structure or numeric parsing has broken.\nstopifnot(nrow(parks) &gt;= 60,\n          all(!is.na(parks$area_acres)),\n          all(!is.na(parks$visits_2025)),\n          all(parks$area_acres &gt; 0),\n          all(parks$visits_2025 &gt; 0))\n\n# Archive the snapshot this post was built from, so the numbers reported here\n# stay reproducible even after Wikipedia is edited.\nwrite_csv(parks, \"data/parks_clean.csv\")\n\n\nThe scrape returns 63 parks. Separating extraction from cleaning makes the workflow auditable: html_table() collects text; parse_number() removes commas, units, and footnotes; and the checks stop the analysis instead of silently producing nonsense if the page changes."
+    "text": "One respectful request\nI scraped the Wikipedia list of U.S. national parks on September 20, 2026. Its table reports 2023 acreage and 2025 recreation visits, citing National Park Service sources. Wikipedia text is available under CC BY-SA 4.0, and this post attributes and links the source rather than copying its prose or images. I also checked Wikipedia’s robots.txt: this ordinary article path is not disallowed. The analysis sends one request, accesses no login or restricted page, and does not crawl individual park pages.\nAs a provenance check, I compared the scraped leaders with the official NPS Annual Visitation by Park report. The 2025 totals match exactly: Death Valley 1,320,134, Everglades 778,198, and Big Bend 568,104. These are recreation visits, not unique people. The NPS portal remains the appropriate place to verify later revisions before booking.\n\n\nShow reproducible R code\nlibrary(rvest)\nlibrary(dplyr)\nlibrary(stringr)\nlibrary(readr)\nlibrary(ggplot2)\n\nurl &lt;- \"https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States\"\n\n# One HTTP request; select the first table by its semantic CSS class.\npage &lt;- read_html(url)\nraw &lt;- page |&gt;\n  html_element(\"table.wikitable\") |&gt;\n  html_table(fill = TRUE)\n\n# Footnote numbers in column names can change, so locate columns by prefix.\narea_col &lt;- names(raw)[str_detect(names(raw), \"^Area\")][1]\nvisit_col &lt;- names(raw)[str_detect(names(raw), \"^Recreation visitors\")][1]\nstopifnot(!is.na(area_col), !is.na(visit_col))\n\nparks &lt;- raw |&gt;\n  transmute(\n    park = Name |&gt;\n      str_remove_all(\"[†‡*]\") |&gt;\n      str_squish(),\n    location = Location |&gt;\n      str_remove(\"\\\\s*\\\\.mw-parser.*$\") |&gt;\n      str_remove(\"\\\\s+\\\\d.*$\") |&gt;\n      str_squish(),\n    area_acres = parse_number(.data[[area_col]]),\n    visits_2025 = parse_number(.data[[visit_col]])\n  ) |&gt;\n  mutate(visits_per_1000_acres = visits_2025 / (area_acres / 1000))\n\n# Fail loudly if the page structure or numeric parsing has broken.\nstopifnot(nrow(parks) &gt;= 60,\n          all(!is.na(parks$area_acres)),\n          all(!is.na(parks$visits_2025)),\n          all(parks$area_acres &gt; 0),\n          all(parks$visits_2025 &gt; 0))\n\n# Archive the snapshot this post was built from, so the numbers reported here\n# stay reproducible even after Wikipedia is edited.\nwrite_csv(parks, \"data/parks_clean.csv\")\n\n\nThe scrape returns 64 parks. Separating extraction from cleaning makes the workflow auditable: html_table() collects text; parse_number() removes commas, units, and footnotes; and the checks stop the analysis instead of silently producing nonsense if the page changes."
   },
   {
     "objectID": "blog/posts/post2/index.html#define-a-useful-comparison-set",
