@@ -1,0 +1,92 @@
+---
+title: "Does More Income Buy More Years? Exploring the Global Income–Health Gradient"
+subtitle: "An interactive Plotly analysis of 197 economies from 1990 to 2023"
+date: 2026-10-26
+author: "Haozhuo Zhang"
+lang: en
+categories: [Plotly, World-Bank, health, development]
+description: "Interactive country-level visualizations reveal both the global income–longevity gradient and the striking differences hidden by a single trend line."
+resources:
+  - figures/*.html
+format:
+  html:
+    theme: flatly
+    toc: true
+    code-fold: true
+    code-summary: "Show reproducible Python code"
+    embed-resources: false
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+<style>
+.plotly-frame {
+  width: 100%;
+  height: 700px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: white;
+}
+.plotly-frame.short { height: 630px; }
+@media (max-width: 700px) {
+  .plotly-frame { height: 620px; }
+  .plotly-frame.short { height: 590px; }
+}
+</style>
+
+## The question
+
+Richer countries generally live longer—but does a given level of income buy the same longevity everywhere, and has that relationship changed since 1990? A static scatterplot can show one year. It cannot conveniently reveal each country's identity, its path through time, or the regional patterns hidden underneath the global relationship.
+
+I combine three World Bank indicators: GDP per capita at purchasing-power parity in constant 2021 international dollars, life expectancy at birth, and population. After removing regional aggregates and rows missing any of the three measures, the panel contains **6,597 country-year observations** and covers as many as 197 economies in 2023.
+
+## Explore countries and years
+
+The animated bubble chart makes four dimensions accessible: horizontal position is income, vertical position is life expectancy, bubble area represents population, and color identifies World Bank region. Use **Play** or drag the year slider; hover to identify a country; click a legend label to isolate a region; and double-click the legend to restore all regions.
+
+<iframe class="plotly-frame" src="figures/figure1_income_health_animation.html" title="Interactive animated scatterplot of GDP per capita and life expectancy by country from 1990 to 2023" loading="lazy"></iframe>
+
+[Open the animation in a separate page](figures/figure1_income_health_animation.html)
+
+The cloud moves up and right, but it does not collapse onto one line. Across the countries with complete data, population-weighted life expectancy increased from **65.1 years in 1990 to 73.4 in 2023**, while population-weighted GDP per capita rose from approximately **$11,382 to $20,995**.
+
+The cross-sectional gradient also flattened. An OLS regression of life expectancy on \(\log_2(\text{GDP per capita})\) associates one income doubling with 4.47 additional life-years in 1990, compared with 3.65 years in 2023. This pattern is consistent with diminishing health returns to income, although the graph is descriptive and does not identify a causal effect.
+
+The hover labels reveal why interactivity matters. In 2023, Jordan's life expectancy was about 6.6 years above the value predicted by the cross-country income relationship, while Nigeria's was about 15.3 years below it. These residuals direct attention toward health systems, conflict, inequality, disease burden, and measurement—not just average income.
+
+## Switch between regional outcomes
+
+The second figure aggregates countries using population weights. Choose **Life expectancy** or **GDP per capita**, hover over a line for exact values, and use the legend to compare selected regions.
+
+<iframe class="plotly-frame short" src="figures/figure2_regional_selector.html" title="Interactive regional trends with buttons to switch between life expectancy and GDP per capita" loading="lazy"></iframe>
+
+[Open the regional comparison in a separate page](figures/figure2_regional_selector.html)
+
+South Asia recorded the largest life-expectancy gain, from 58.4 to 72.3 years. Sub-Saharan Africa also gained substantially—from 50.3 to 62.6 years—but remained far below every other region in 2023. Switching to GDP shows why a single global average is inadequate: East Asia and the Pacific experienced dramatic income growth, while Sub-Saharan Africa's population-weighted GDP per capita rose much more slowly.
+
+## How the visualization is built
+
+```python
+fig = px.scatter(
+    panel,
+    x="gdp_per_capita",
+    y="life_expectancy",
+    animation_frame="year",
+    animation_group="iso3",
+    size="population",
+    color="region",
+    hover_name="country",
+    log_x=True
+)
+fig.write_html("figures/figure1_income_health_animation.html",
+               include_plotlyjs=True)
+```
+
+`animation_group="iso3"` tells Plotly that the same country persists across frames. The logarithmic income axis makes proportional differences comparable, while hover labels preserve observation-level detail without covering the chart in text.
+
+The takeaway is not simply that income and health are related. **Countries with similar income can achieve very different longevity, and those differences remain economically meaningful even after decades of global progress.** The animation, hover information, legend filtering, and metric selector let readers test that conclusion rather than merely accept a static summary.
+
+**Data source:** [World Bank Open Data API](https://api.worldbank.org/), indicators `NY.GDP.PCAP.PP.KD`, `SP.DYN.LE00.IN`, and `SP.POP.TOTL`. The complete download, cleaning code, data, and interactive files are available in the [project repository](https://github.com/haozhuo22/blog-post-7-plotly-income-health).
+

@@ -1,0 +1,25 @@
+DATA DICTIONARY
+
+All source data are downloaded by analysis.py from the World Bank Open Data API.
+
+processed/world_income_health_panel.csv
+- iso3: ISO3 economy code
+- year: calendar year, 1990–2023
+- gdp_per_capita: GDP per capita at PPP in constant 2021 international dollars
+- life_expectancy: life expectancy at birth in years
+- population: total population
+- iso2: ISO2 economy code
+- country: economy name
+- region: World Bank region
+- income_group: World Bank income classification
+
+processed/regional_weighted_trends.csv
+- year and region identify each observation
+- countries is the number of complete economies
+- population is the summed population represented
+- life_expectancy is a population-weighted mean
+- gdp_per_capita is a population-weighted mean
+
+processed/annual_summary.csv
+- annual global sample size, population-weighted outcomes, correlation, and the OLS slope measuring life-years associated with a doubling of GDP per capita
+
