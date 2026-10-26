@@ -150,21 +150,34 @@ def make_animation(panel):
         "Middle East, North Africa, Afghanistan & Pakistan", "North America",
         "South Asia", "Sub-Saharan Africa",
     ]
+    region_labels = {
+        "East Asia & Pacific": "E. Asia & Pacific",
+        "Europe & Central Asia": "Europe & C. Asia",
+        "Latin America & Caribbean": "Latin America & Caribbean",
+        "Middle East, North Africa, Afghanistan & Pakistan": "Middle East & N. Africa",
+        "North America": "North America",
+        "South Asia": "South Asia",
+        "Sub-Saharan Africa": "Sub-Saharan Africa",
+    }
+    chart_data = panel.copy()
+    chart_data["region"] = chart_data["region"].str.strip()
+    chart_data["region_short"] = chart_data["region"].map(region_labels)
     palette = px.colors.qualitative.Safe
     fig = px.scatter(
-        panel,
+        chart_data,
         x="gdp_per_capita",
         y="life_expectancy",
         animation_frame="year",
         animation_group="iso3",
         size="population",
-        color="region",
-        category_orders={"region": region_order},
+        color="region_short",
+        category_orders={"region_short": [region_labels[x] for x in region_order]},
         color_discrete_sequence=palette,
         hover_name="country",
         hover_data={
             "iso3": False,
             "region": True,
+            "region_short": False,
             "income_group": True,
             "gdp_per_capita": ":$,.0f",
             "life_expectancy": ":.1f",
@@ -178,17 +191,27 @@ def make_animation(panel):
         labels={
             "gdp_per_capita": "GDP per capita, PPP (constant 2021 international $)",
             "life_expectancy": "Life expectancy at birth (years)",
-            "region": "World Bank region",
+            "region_short": "World Bank region",
         },
-        title="Income and longevity across countries, 1990–2023",
     )
     fig.update_layout(
-        template="plotly_white", height=680,
-        margin=dict(l=70, r=30, t=90, b=80),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-        title=dict(x=0.02, font=dict(size=24)),
+        template="plotly_white", height=720,
+        margin=dict(l=64, r=18, t=105, b=145),
+        legend=dict(
+            orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0,
+            title_text="Region", font=dict(size=9),
+            bgcolor="rgba(255,255,255,0.88)",
+        ),
+        font=dict(size=11),
         hoverlabel=dict(namelength=-1),
     )
+    if fig.layout.sliders:
+        fig.layout.sliders[0].update(
+            x=0.16, len=0.82, y=-0.14, pad=dict(t=0),
+            currentvalue=dict(prefix="Year: ", font=dict(size=12)),
+        )
+    if fig.layout.updatemenus:
+        fig.layout.updatemenus[0].update(x=0.01, y=-0.14, pad=dict(t=0, r=8))
     fig.update_xaxes(gridcolor="#E8E8E8")
     fig.update_yaxes(gridcolor="#E8E8E8")
     fig.write_html(
@@ -200,7 +223,18 @@ def make_animation(panel):
 
 
 def make_regional_selector(regional):
+    regional = regional.copy()
+    regional["region"] = regional["region"].str.strip()
     regions = sorted(regional["region"].unique())
+    region_labels = {
+        "East Asia & Pacific": "E. Asia & Pacific",
+        "Europe & Central Asia": "Europe & C. Asia",
+        "Latin America & Caribbean": "Latin America & Caribbean",
+        "Middle East, North Africa, Afghanistan & Pakistan": "Middle East & N. Africa",
+        "North America": "North America",
+        "South Asia": "South Asia",
+        "Sub-Saharan Africa": "Sub-Saharan Africa",
+    }
     colors = dict(zip(regions, px.colors.qualitative.Safe * 2))
     fig = go.Figure()
     for region in regions:
@@ -208,7 +242,8 @@ def make_regional_selector(regional):
         fig.add_trace(
             go.Scatter(
                 x=d["year"], y=d["life_expectancy"], mode="lines+markers",
-                name=region, legendgroup=region, line=dict(color=colors[region], width=2.5),
+                name=region_labels[region], legendgroup=region,
+                line=dict(color=colors[region], width=2.5),
                 hovertemplate=f"<b>{region}</b><br>%{{x}}<br>Life expectancy: %{{y:.1f}} years<extra></extra>",
                 visible=True,
             )
@@ -218,7 +253,7 @@ def make_regional_selector(regional):
         fig.add_trace(
             go.Scatter(
                 x=d["year"], y=d["gdp_per_capita"], mode="lines+markers",
-                name=region, legendgroup=region, showlegend=False,
+                name=region_labels[region], legendgroup=region, showlegend=False,
                 line=dict(color=colors[region], width=2.5),
                 hovertemplate=f"<b>{region}</b><br>%{{x}}<br>GDP per capita: $%{{y:,.0f}}<extra></extra>",
                 visible=False,
@@ -226,14 +261,16 @@ def make_regional_selector(regional):
         )
     n = len(regions)
     fig.update_layout(
-        template="plotly_white", height=610,
-        title="Regional trajectories: switch the outcome below",
+        template="plotly_white", height=650,
         yaxis_title="Population-weighted life expectancy (years)",
         xaxis_title="Year",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+        legend=dict(
+            orientation="h", yanchor="bottom", y=1.01, xanchor="left", x=0,
+            font=dict(size=9), bgcolor="rgba(255,255,255,0.88)",
+        ),
         updatemenus=[
             dict(
-                type="buttons", direction="right", x=0, y=1.18,
+                type="buttons", direction="right", x=0, y=1.20,
                 buttons=[
                     dict(label="Life expectancy", method="update",
                          args=[{"visible": [True] * n + [False] * n, "showlegend": [True] * n + [False] * n},
@@ -244,7 +281,8 @@ def make_regional_selector(regional):
                 ],
             )
         ],
-        margin=dict(l=80, r=30, t=125, b=70),
+        margin=dict(l=70, r=18, t=125, b=70),
+        font=dict(size=11),
     )
     fig.write_html(
         FIGURES / "figure2_regional_selector.html",

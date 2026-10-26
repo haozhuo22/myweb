@@ -23,16 +23,19 @@ execute:
 
 <style>
 .plotly-frame {
+  display: block;
+  box-sizing: border-box;
   width: 100%;
-  height: 700px;
+  height: 740px;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   background: white;
+  margin: 1rem 0 0.6rem;
 }
-.plotly-frame.short { height: 630px; }
+.plotly-frame.short { height: 670px; }
 @media (max-width: 700px) {
-  .plotly-frame { height: 620px; }
-  .plotly-frame.short { height: 590px; }
+  .plotly-frame { height: 740px; }
+  .plotly-frame.short { height: 670px; }
 }
 </style>
 
@@ -52,7 +55,7 @@ The animated bubble chart makes four dimensions accessible: horizontal position 
 
 The cloud moves up and right, but it does not collapse onto one line. Across the countries with complete data, population-weighted life expectancy increased from **65.1 years in 1990 to 73.4 in 2023**, while population-weighted GDP per capita rose from approximately **$11,382 to $20,995**.
 
-The cross-sectional gradient also flattened. An OLS regression of life expectancy on \(\log_2(\text{GDP per capita})\) associates one income doubling with 4.47 additional life-years in 1990, compared with 3.65 years in 2023. This pattern is consistent with diminishing health returns to income, although the graph is descriptive and does not identify a causal effect.
+The cross-sectional gradient also flattened. An OLS regression of life expectancy on $\log_2(\text{GDP per capita})$ associates one income doubling with 4.47 additional life-years in 1990, compared with 3.65 years in 2023. This pattern is consistent with diminishing health returns to income, although the graph is descriptive and does not identify a causal effect.
 
 The hover labels reveal why interactivity matters. In 2023, Jordan's life expectancy was about 6.6 years above the value predicted by the cross-country income relationship, while Nigeria's was about 15.3 years below it. These residuals direct attention toward health systems, conflict, inequality, disease burden, and measurement—not just average income.
 
