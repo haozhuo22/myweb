@@ -215,7 +215,7 @@ def make_animation(panel):
     fig.update_xaxes(gridcolor="#E8E8E8")
     fig.update_yaxes(gridcolor="#E8E8E8")
     fig.write_html(
-        FIGURES / "figure1_income_health_animation.html",
+        FIGURES / "figure1_income_health_responsive.html",
         include_plotlyjs=True,
         full_html=True,
         config={"displaylogo": False, "responsive": True},
@@ -285,7 +285,7 @@ def make_regional_selector(regional):
         font=dict(size=11),
     )
     fig.write_html(
-        FIGURES / "figure2_regional_selector.html",
+        FIGURES / "figure2_regional_trends_responsive.html",
         include_plotlyjs=True,
         full_html=True,
         config={"displaylogo": False, "responsive": True},
