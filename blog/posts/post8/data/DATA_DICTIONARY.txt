@@ -1,0 +1,23 @@
+All files are simulated by analysis.py; no external data are used.
+
+bootstrap_sample.csv
+  value: one observation from the Gamma(shape=4, scale=0.25) population.
+
+bootstrap_distribution.csv
+  bootstrap_mean: mean from one with-replacement resample of the original sample.
+
+coverage_results.csv
+  sample_size: observations in each simulated sample.
+  confidence_level: nominal percentile-bootstrap confidence level.
+  empirical_coverage: share of repeated intervals containing the true mean (1.0).
+  experiments: repeated samples used to estimate coverage.
+  bootstrap_resamples: resamples used for each interval.
+
+null_distribution.csv
+  null_difference_in_means: simulated difference between two sample means when H0 is true.
+
+hypothesis_test_results.csv
+  observed_difference: selected test statistic.
+  p_value: two-sided simulation p-value.
+  critical_absolute_difference: simulated 5% two-sided rejection cutoff.
+  reject_at_5_percent: test decision.

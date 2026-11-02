@@ -1,0 +1,114 @@
+---
+title: "What Does 95% Really Mean? Learning Statistical Inference Through Simulation"
+subtitle: "Bootstrap intervals, repeated-sampling coverage, rejection regions, and p-values made visible"
+date: 2026-11-02
+author: "Haozhuo Zhang"
+lang: en
+categories: [simulation, bootstrap, hypothesis-testing, Plotly]
+description: "Interactive simulations show how bootstrap confidence intervals and hypothesis tests behave across repeated samples."
+resources:
+  - figures/*.html
+format:
+  html:
+    theme: flatly
+    toc: true
+    code-fold: true
+    code-summary: "Show reproducible Python code"
+    embed-resources: false
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+<style>
+.plotly-frame {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 575px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: white;
+  margin: 1rem 0 0.6rem;
+}
+.plotly-frame.coverage { height: 685px; }
+.plotly-frame.test { height: 625px; }
+@media (max-width: 700px) {
+  .plotly-frame { height: 575px; }
+  .plotly-frame.coverage { height: 685px; }
+  .plotly-frame.test { height: 625px; }
+}
+</style>
+
+## Why inference needs simulation
+
+A 95% confidence interval is often misread as having a 95% probability of containing the true parameter. A p-value is similarly mistaken for the probability that the null hypothesis is true. Both interpretations are wrong because frequentist inference describes the behavior of a **procedure across hypothetical repetitions**, while we normally observe only one sample.
+
+Simulation makes those repetitions visible. I use a moderately right-skewed Gamma population with shape 4 and scale 0.25. Its true mean is known to be
+
+$$
+\mu = \text{shape}\times\text{scale}=4(0.25)=1.
+$$
+
+Knowing the answer lets us evaluate whether our inferential procedures work. The fixed random seed makes every result reproducible.
+
+## Building one bootstrap interval
+
+Suppose the population is unavailable after we draw a sample of 50 observations. The bootstrap treats that sample as an empirical approximation to the population. I repeatedly draw 50 observations **with replacement**, calculate the mean each time, and use the 2.5th and 97.5th percentiles of 5,000 bootstrap means:
+
+$$
+CI_{0.95}=\left[Q_{0.025}(\bar X^*),\;Q_{0.975}(\bar X^*)\right].
+$$
+
+```python
+indices = rng.integers(0, len(sample), size=(5000, len(sample)))
+bootstrap_means = sample[indices].mean(axis=1)
+low, high = np.quantile(bootstrap_means, [0.025, 0.975])
+```
+
+The observed sample mean is **0.961**, and its percentile interval is **[0.822, 1.104]**. The figure shows the uncertainty created by resampling the observed data. Hover over the distribution and reference lines for exact values.
+
+<iframe class="plotly-frame" src="figures/figure1_bootstrap_distribution.html?v=20261102" title="Bootstrap distribution with sample mean, true population mean, and percentile confidence limits" loading="lazy"></iframe>
+
+[Open the bootstrap distribution in a separate page](figures/figure1_bootstrap_distribution.html?v=20261102)
+
+This interval contains 1, but one successful interval does not establish 95% coverage. Coverage is a long-run claim about the method.
+
+## Does 95% coverage really mean 95%?
+
+I repeated the entire experiment 500 times. Each experiment draws a new sample, creates 2,000 bootstrap resamples, and produces a new percentile interval. The interactive figure displays 80 intervals; teal intervals cross the dashed true-mean line, while red intervals miss it. Use the menu to change sample size and confidence level.
+
+<iframe class="plotly-frame coverage" src="figures/figure2_coverage_explorer.html?v=20261102" title="Interactive repeated-sampling coverage experiment for bootstrap confidence intervals" loading="lazy"></iframe>
+
+[Open the coverage experiment in a separate page](figures/figure2_coverage_explorer.html?v=20261102)
+
+With $n=50$, **94.0%** of the nominal 95% intervals contain the true mean. That is reasonably close to 95%: Monte Carlo randomness alone prevents exact equality, and percentile intervals can have small finite-sample error. The controls reveal two regularities. Higher confidence produces wider intervals and more coverage; larger samples generally produce narrower, more stable intervals. Once an interval has been calculated, it either contains the fixed parameter or it does not. The **95%** describes the success rate of the interval-producing procedure.
+
+## Hypothesis testing as a simulated counterfactual
+
+Now consider two independent groups of 40 observations. The null hypothesis is
+
+$$
+H_0:\mu_B-\mu_A=0,
+$$
+
+and the statistic is $T=\bar X_B-\bar X_A$. I generated 20,000 experiments under $H_0$. The dashed red cutoffs, approximately **±0.219**, enclose the central 95% of this null distribution; statistics beyond them form the 5% rejection region.
+
+<iframe class="plotly-frame test" src="figures/figure3_null_distribution.html?v=20261102" title="Interactive null distribution showing rejection regions, observed statistic, and simulation p-value" loading="lazy"></iframe>
+
+[Open the hypothesis-test simulation in a separate page](figures/figure3_null_distribution.html?v=20261102)
+
+Choose an observed difference from the menu. For $T_{obs}=0.25$, the two-sided simulation p-value is **0.025**: only about 2.5% of null simulations are at least as far from zero as the observed result, so we reject $H_0$ at 5%. A difference of 0.15 gives $p=0.182$ and is not rejected. The p-value is therefore
+
+$$
+p=P\left(|T|\ge |T_{obs}|\mid H_0\right),
+$$
+
+not $P(H_0\mid\text{data})$. It measures how surprising the statistic would be **if the null were true**.
+
+## Takeaway
+
+Bootstrap intervals and hypothesis tests are not mysterious formulas. They are repeated-sampling algorithms. A confidence level measures long-run coverage; a rejection region identifies statistics unusual under a null model; and a p-value measures null-model extremeness. Simulation exposes all three ideas and also shows their limits: results vary across samples, nominal coverage is approximate, and statistical significance is not the same as economic importance.
+
+**Source and reproducibility:** All observations are simulated; no external dataset is used. The population model, random seed, generated CSV files, complete Python code, and interactive figures are available in the [project repository](https://github.com/haozhuo22/blog-post-8-simulation-inference).
