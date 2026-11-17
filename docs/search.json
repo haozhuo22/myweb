@@ -1,45 +1,136 @@
 [
   {
-    "objectID": "bio.html",
-    "href": "bio.html",
-    "title": "About Me",
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
     "section": "",
-    "text": "Write a short biography here.\nInclude:"
+    "text": "Download my resume here:"
   },
   {
-    "objectID": "bio.html#education",
-    "href": "bio.html#education",
-    "title": "About Me",
-    "section": "Education",
-    "text": "Education\nMaster of Applied Economics and Data Science, University of Pennsylvania (expaceted 2027) Batelor of Science, University Name 2026"
+    "objectID": "resume.html#resume-pdf",
+    "href": "resume.html#resume-pdf",
+    "title": "Resume",
+    "section": "Resume PDF",
+    "text": "Resume PDF"
   },
   {
-    "objectID": "bio.html#interests",
-    "href": "bio.html#interests",
-    "title": "About Me",
-    "section": "Interests",
-    "text": "Interests\n\nMachine Learning\nData Analysis"
-  },
-  {
-    "objectID": "bio.html#contact",
-    "href": "bio.html#contact",
-    "title": "About Me",
-    "section": "Contact",
-    "text": "Contact"
-  },
-  {
-    "objectID": "bio.html#studentemail.edu",
-    "href": "bio.html#studentemail.edu",
-    "title": "About Me",
-    "section": "student@email.edu",
-    "text": "student@email.edu"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
+    "objectID": "blog/posts/post9/index.html",
+    "href": "blog/posts/post9/index.html",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
     "section": "",
-    "text": "What Does 95% Really Mean? Learning Statistical Inference Through Simulation\n\n\nBootstrap intervals, repeated-sampling coverage, rejection regions, and p-values made visible\n\n\nInteractive simulations show how bootstrap confidence intervals and hypothesis tests behave across repeated samples.\n\n\n\n\n\nNov 2, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nDoes More Income Buy More Years? Exploring the Global Income–Health Gradient\n\n\nAn interactive Plotly analysis of 197 economies from 1990 to 2023\n\n\nInteractive country-level visualizations reveal both the global income–longevity gradient and the striking differences hidden by a single trend line.\n\n\n\n\n\nOct 26, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nFrom Family IDs to Mobility: Matching Parents and Children with SQL in Python\n\n\nA reproducible tutorial on intergenerational elasticity and life-cycle bias\n\n\nA step-by-step Python and SQLite tutorial showing how income timing and multi-year averages change estimates of intergenerational persistence.\n\n\n\n\n\nOct 21, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nRent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden\n\n\nCounty patterns and changes from the 2019 and 2024 American Community Survey\n\n\nCounty maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019.\n\n\n\n\n\nOct 19, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nPriced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Our class experiment asks XGBoost to predict which large U.S. stocks will perform best over the next 20 trading days. This is an appealing machine-learning problem: boosted trees can combine momentum, volatility, and reversal signals nonlinearly. Yet stock returns have a weak signal, high noise, changing relationships, and prices that quickly incorporate public information. A flexible model may therefore learn yesterday’s accidents instead of tomorrow’s pattern.\nI reproduce the class specification and ask a stricter question: does an improved model beat both the original XGBoost and a historical-mean forecast on data that played no role in training or tuning? I also test whether its rankings produce an economically meaningful portfolio after turnover costs."
+  },
+  {
+    "objectID": "blog/posts/post9/index.html#the-experimentand-the-difficult-question",
+    "href": "blog/posts/post9/index.html#the-experimentand-the-difficult-question",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
+    "section": "",
+    "text": "Our class experiment asks XGBoost to predict which large U.S. stocks will perform best over the next 20 trading days. This is an appealing machine-learning problem: boosted trees can combine momentum, volatility, and reversal signals nonlinearly. Yet stock returns have a weak signal, high noise, changing relationships, and prices that quickly incorporate public information. A flexible model may therefore learn yesterday’s accidents instead of tomorrow’s pattern.\nI reproduce the class specification and ask a stricter question: does an improved model beat both the original XGBoost and a historical-mean forecast on data that played no role in training or tuning? I also test whether its rankings produce an economically meaningful portfolio after turnover costs."
+  },
+  {
+    "objectID": "blog/posts/post9/index.html#data-and-prediction-target",
+    "href": "blog/posts/post9/index.html#data-and-prediction-target",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
+    "section": "Data and prediction target",
+    "text": "Data and prediction target\nUsing tidyquant::tq_get(), I collected daily adjusted prices from Yahoo Finance for SPY and 95 diversified large U.S. stocks. Adjusted prices account for splits and distributions. The usable panel begins in 2018, while every reported result comes from the untouched January 2024–October 2026 test period.\nFor stock \\(i\\) on formation date \\(t\\), the target is the return beginning after formation:\n\\[\ny_{i,t}=\\frac{P_{i,t+20}}{P_{i,t+1}}-1.\n\\]\nThis timing prevents future prices from entering the predictors. Because the horizon is about one month, I evaluate one formation date per month rather than treating heavily overlapping daily forecasts as independent.\n\n\nShow reproducible R code\nprices &lt;- tq_get(tickers, from = \"2017-01-01\", to = Sys.Date())\ntarget &lt;- lead(adjusted, 20) / lead(adjusted, 1) - 1\n\n\nThe class model uses six signals, 300 trees, depth 5, and the original 2022–2023 training window. My improved version corrects the direction of the momentum ratios; adds market momentum, beta, idiosyncratic volatility, liquidity, relative momentum, and distance from the 52-week high; and uses data back to 2018. I tune four regularized specifications on 2023 only, choosing depth 2, learning rate 0.03, 80% row and feature subsampling, and 300 rounds. I then refit through 2023 and open the 2024+ test set once.\n\n\nShow reproducible R code\nfit &lt;- xgb.train(\n  params = list(objective = \"reg:squarederror\", max_depth = 2,\n                eta = 0.03, subsample = 0.8, colsample_bytree = 0.8,\n                lambda = 10, alpha = 0.5),\n  data = training_matrix, nrounds = 300\n)"
+  },
+  {
+    "objectID": "blog/posts/post9/index.html#predictive-accuracy-improvement-is-not-victory",
+    "href": "blog/posts/post9/index.html#predictive-accuracy-improvement-is-not-victory",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
+    "section": "Predictive accuracy: improvement is not victory",
+    "text": "Predictive accuracy: improvement is not victory\n\n\n\n\n\n\n\n\n\n\n\nModel\nRMSE\nMAE\nOut-of-sample \\(R^2\\)\nDirection accuracy\nMean rank IC\n\n\n\n\nHistorical mean\n8.87%\n6.37%\n-1.13%\n55.4%\n—\n\n\nClass XGBoost\n9.19%\n6.63%\n-8.57%\n50.4%\n0.012\n\n\nImproved XGBoost\n8.90%\n6.41%\n-1.75%\n53.4%\n-0.031\n\n\n\nThe improved model substantially reduces the class model’s error, but it still does not beat the historical mean. Out-of-sample \\(R^2\\) is\n\\[\nR^2_{OOS}=1-\\frac{\\sum(y-\\hat y)^2}{\\sum(y-\\bar y_{train})^2};\n\\]\na negative value means the model loses to the simple benchmark. Its negative mean monthly rank correlation also says that higher scores did not reliably identify higher returns.\n\n\n\nTwo-panel bar chart comparing RMSE and MAE for the historical mean, class XGBoost, and improved XGBoost.\n\n\nThe decile test reaches the same conclusion. If the score were useful, realized returns should rise approximately from decile 1 to 10. They do not; sampling uncertainty is large and the pattern is not monotonic.\n\n\n\nMean subsequent returns across ten improved-model prediction deciles with uncertainty bars."
+  },
+  {
+    "objectID": "blog/posts/post9/index.html#did-the-predictions-make-money",
+    "href": "blog/posts/post9/index.html#did-the-predictions-make-money",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
+    "section": "Did the predictions make money?",
+    "text": "Did the predictions make money?\nEach month I equally weight the ten highest-ranked stocks and subtract 10 basis points times one-way turnover. The improved portfolio earns 25.0% annualized with a 1.23 Sharpe ratio, compared with 26.8% and 1.77 for the class model, 18.5% and 1.71 for the equal-weight universe, and 17.0% and 1.45 for SPY.\n\n\n\nOut-of-sample growth of one dollar for two XGBoost strategies, an equal-weight universe, and SPY.\n\n\nThat looks encouraging, but it is not proof of a durable edge. The test contains only 34 monthly decisions, uses today’s large-cap universe and therefore has survivorship bias, and omits taxes, bid-ask spreads, and market impact. More revealingly, the improved model’s better forecast error does not improve the class model’s portfolio, and neither model shows stable cross-sectional ranking power. A few favorable top-decile outcomes can dominate a short backtest.\nMarket momentum accounts for most fitted gain, followed by distance from the 52-week high and idiosyncratic volatility. Gain measures how often a variable improves tree splits; it is not a causal effect.\n\n\n\nHorizontal bar chart of the ten most important improved-model features by XGBoost gain."
+  },
+  {
+    "objectID": "blog/posts/post9/index.html#takeaway",
+    "href": "blog/posts/post9/index.html#takeaway",
+    "title": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test",
+    "section": "Takeaway",
+    "text": "Takeaway\nCareful feature engineering and regularization repaired much of the original model’s forecast error, yet they did not beat a constant mean forecast out of sample. The profitable-looking backtest should be treated as a hypothesis for future testing, not an investment recommendation. In noisy adaptive markets, honest time splits, simple benchmarks, costs, and negative results matter more than a sophisticated algorithm’s in-sample fit.\nSources and reproducibility. Prices are retrieved with tidyquant from Yahoo Finance. The modeling approach follows Chen and Guestrin’s XGBoost paper; the signal families are motivated by Gu, Kelly, and Xiu. The complete R program, cached raw prices, clean panel, predictions, metrics, and figures are in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html",
+    "href": "blog/posts/post7/index.html",
+    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "section": "",
+    "text": "Richer countries generally live longer—but does a given level of income buy the same longevity everywhere, and has that relationship changed since 1990? A static scatterplot can show one year. It cannot conveniently reveal each country’s identity, its path through time, or the regional patterns hidden underneath the global relationship.\nI combine three World Bank indicators: GDP per capita at purchasing-power parity in constant 2021 international dollars, life expectancy at birth, and population. After removing regional aggregates and rows missing any of the three measures, the panel contains 6,597 country-year observations and covers as many as 197 economies in 2023."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#the-question",
+    "href": "blog/posts/post7/index.html#the-question",
+    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "section": "",
+    "text": "Richer countries generally live longer—but does a given level of income buy the same longevity everywhere, and has that relationship changed since 1990? A static scatterplot can show one year. It cannot conveniently reveal each country’s identity, its path through time, or the regional patterns hidden underneath the global relationship.\nI combine three World Bank indicators: GDP per capita at purchasing-power parity in constant 2021 international dollars, life expectancy at birth, and population. After removing regional aggregates and rows missing any of the three measures, the panel contains 6,597 country-year observations and covers as many as 197 economies in 2023."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#explore-countries-and-years",
+    "href": "blog/posts/post7/index.html#explore-countries-and-years",
+    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "section": "Explore countries and years",
+    "text": "Explore countries and years\nThe animated bubble chart makes four dimensions accessible: horizontal position is income, vertical position is life expectancy, bubble area represents population, and color identifies World Bank region. Use Play or drag the year slider; hover to identify a country; click a legend label to isolate a region; and double-click the legend to restore all regions.\n\n\nOpen the animation in a separate page\nThe cloud moves up and right, but it does not collapse onto one line. Across the countries with complete data, population-weighted life expectancy increased from 65.1 years in 1990 to 73.4 in 2023, while population-weighted GDP per capita rose from approximately $11,382 to $20,995.\nThe cross-sectional gradient also flattened. An OLS regression of life expectancy on \\(\\log_2(\\text{GDP per capita})\\) associates one income doubling with 4.47 additional life-years in 1990, compared with 3.65 years in 2023. This pattern is consistent with diminishing health returns to income, although the graph is descriptive and does not identify a causal effect.\nThe hover labels reveal why interactivity matters. In 2023, Jordan’s life expectancy was about 6.6 years above the value predicted by the cross-country income relationship, while Nigeria’s was about 15.3 years below it. These residuals direct attention toward health systems, conflict, inequality, disease burden, and measurement—not just average income."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#switch-between-regional-outcomes",
+    "href": "blog/posts/post7/index.html#switch-between-regional-outcomes",
+    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "section": "Switch between regional outcomes",
+    "text": "Switch between regional outcomes\nThe second figure aggregates countries using population weights. Choose Life expectancy or GDP per capita, hover over a line for exact values, and use the legend to compare selected regions.\n\n\nOpen the regional comparison in a separate page\nSouth Asia recorded the largest life-expectancy gain, from 58.4 to 72.3 years. Sub-Saharan Africa also gained substantially—from 50.3 to 62.6 years—but remained far below every other region in 2023. Switching to GDP shows why a single global average is inadequate: East Asia and the Pacific experienced dramatic income growth, while Sub-Saharan Africa’s population-weighted GDP per capita rose much more slowly."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#how-the-visualization-is-built",
+    "href": "blog/posts/post7/index.html#how-the-visualization-is-built",
+    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "section": "How the visualization is built",
+    "text": "How the visualization is built\nfig = px.scatter(\n    panel,\n    x=\"gdp_per_capita\",\n    y=\"life_expectancy\",\n    animation_frame=\"year\",\n    animation_group=\"iso3\",\n    size=\"population\",\n    color=\"region\",\n    hover_name=\"country\",\n    log_x=True\n)\nfig.write_html(\"figures/figure1_income_health_responsive.html\",\n               include_plotlyjs=True)\nanimation_group=\"iso3\" tells Plotly that the same country persists across frames. The logarithmic income axis makes proportional differences comparable, while hover labels preserve observation-level detail without covering the chart in text.\nThe takeaway is not simply that income and health are related. Countries with similar income can achieve very different longevity, and those differences remain economically meaningful even after decades of global progress. The animation, hover information, legend filtering, and metric selector let readers test that conclusion rather than merely accept a static summary.\nData source: World Bank Open Data API, indicators NY.GDP.PCAP.PP.KD, SP.DYN.LE00.IN, and SP.POP.TOTL. The complete download, cleaning code, data, and interactive files are available in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html",
+    "href": "blog/posts/post5/index.html",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "",
+    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
+    "href": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "",
+    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
+    "href": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "A national problem with clear regional concentrations",
+    "text": "A national problem with clear regional concentrations\n\n\n\n\n\n\n\n\nFigure 1: County renter cost-burden rates in 2024. Darker counties have a larger share of renter households spending at least 30% of income on gross rent.\n\n\n\n\n\nAcross the 50 states and District of Columbia, the population-weighted cost-burden rate was 51.1% in 2024. The map shows that this is not simply a big-city pattern. High-burden clusters extend across much of Florida, coastal California, parts of the Southwest, and selected counties in the Northeast and Southeast. Several university-centered places also stand out because student-heavy rental markets combine low reported current income with substantial rent.\nAmong counties with at least 5,000 renter households in the computable denominator, Lincoln Parish, Louisiana (66.7%), Watauga County, North Carolina (65.9%), and Osceola County, Florida (65.4%) had the highest estimated rates. The size threshold keeps very small counties with volatile estimates from dominating the ranking, but it does not make these estimates exact."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
+    "href": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "Change was uneven, even within states",
+    "text": "Change was uneven, even within states\nThe weighted national rate rose from 49.6% in 2019 to 51.1% in 2024, a 1.5 percentage-point increase. Yet the change map is much less uniform than that summary suggests.\n\n\n\n\n\n\n\n\nFigure 2: Change in county renter cost-burden rates between the 2015–2019 and 2020–2024 ACS periods. Red indicates an increase; blue indicates a decrease.\n\n\n\n\n\nThe mosaic of red and blue is substantive: state averages conceal neighboring counties moving in opposite directions. Still, some broader shifts are visible. Increases are common across Texas, Florida, and parts of the interior West, while improvement is more scattered. Gray Connecticut regions are a data-comparability issue, not missing analysis: after 2019, the Census Bureau replaced that state’s counties with planning regions, so a direct county match would be misleading.\nAggregating county counts before calculating state rates gives larger counties their proper population weight. Nevada recorded the largest increase, from 49.6% to 55.9% (+6.3 percentage points). Texas (+3.9), Florida (+3.8), Arizona (+3.5), and Georgia (+3.4) followed. Vermont moved in the other direction, falling 2.2 points.\n\n\n\n\n\n\n\n\nFigure 3: States with the largest absolute changes in the share of renters who were cost burdened."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
+    "href": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "What the pattern means—and what it cannot prove",
+    "text": "What the pattern means—and what it cannot prove\nThe geographic evidence suggests that renter stress is both widespread and locally produced. A state-level policy response may miss county markets where the burden is much higher or changing faster. Housing agencies should therefore pair broad affordability programs with local monitoring, especially in rapidly worsening counties.\nThese are descriptive ACS estimates, not causal effects. Five-year estimates pool adjacent years, and the two periods overlap neither in time nor economic conditions. Sampling error is larger in small counties, and the maps do not isolate rent growth from changes in renter income or household composition. The practical takeaway is nevertheless clear: a majority of U.S. renters now face the standard cost-burden threshold, and the places experiencing the sharpest deterioration are not evenly distributed."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#reproducible-workflow",
+    "href": "blog/posts/post5/index.html#reproducible-workflow",
+    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
+    "section": "Reproducible workflow",
+    "text": "Reproducible workflow\n\n\nShow reproducible R code\n# Download official Census data and boundary files.\nsource(\"R/01_download_data.R\")\n\n# Clean both ACS years, calculate weighted rates, join spatial boundaries,\n# and export the three figures and analysis-ready CSV files.\nsource(\"R/02_analysis.R\")\n\n\nData sources: 2019 ACS five-year replicate estimates, 2024 ACS five-year replicate estimates, and 2024 Census cartographic boundary files."
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -98,48 +189,6 @@
     "text": "Reproducibility and source\nThe complete R script, weighted aggregate tables, and exported figures are available in the project repository. Raw IPUMS microdata are excluded under the IPUMS terms; registered users can reproduce the extract using the documented samples and variables.\nCitation: Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles, J. Robert Warren, Daniel Backman, Etienne Breton, Grace Cooper, Julia A. Rivera Drew, Stephanie Richards, David Van Riper, and Kari C.W. Williams. IPUMS CPS: Version 13.0 [dataset]. Minneapolis, MN: IPUMS, 2025. https://doi.org/10.18128/D030.V13.0."
   },
   {
-    "objectID": "blog/posts/post5/index.html",
-    "href": "blog/posts/post5/index.html",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "",
-    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
-  },
-  {
-    "objectID": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
-    "href": "blog/posts/post5/index.html#the-question-where-is-rent-hardest-to-carry",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "",
-    "text": "Housing costs are local. A national average can rise while some communities improve and others deteriorate. This post asks two related questions: Where were renters most cost burdened in 2024, and how did that geography change after 2019? The answers matter because a renter spending a large share of income on housing has less room for food, transportation, health care, and savings.\nI use county-level American Community Survey (ACS) five-year estimates from U.S. Census Bureau table B25070, Gross Rent as a Percentage of Household Income. The Department of Housing and Urban Development’s conventional threshold defines a household as cost burdened when gross rent is at least 30% of household income. For each county, I calculate\n\\[\n\\text{cost-burden rate}=\\frac{R_{30\\text{--}34.9}+R_{35\\text{--}39.9}+R_{40\\text{--}49.9}+R_{50+}}{R_{\\text{total}}-R_{\\text{not computed}}}\\times100.\n\\]\nThe denominator excludes households for which the percentage was not computed. I downloaded official replicate-estimate files and 2024 Census cartographic boundaries, then joined both years by county FIPS code. The code, source files, cleaned data, and figures are available in the project repository."
-  },
-  {
-    "objectID": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
-    "href": "blog/posts/post5/index.html#a-national-problem-with-clear-regional-concentrations",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "A national problem with clear regional concentrations",
-    "text": "A national problem with clear regional concentrations\n\n\n\n\n\n\n\n\nFigure 1: County renter cost-burden rates in 2024. Darker counties have a larger share of renter households spending at least 30% of income on gross rent.\n\n\n\n\n\nAcross the 50 states and District of Columbia, the population-weighted cost-burden rate was 51.1% in 2024. The map shows that this is not simply a big-city pattern. High-burden clusters extend across much of Florida, coastal California, parts of the Southwest, and selected counties in the Northeast and Southeast. Several university-centered places also stand out because student-heavy rental markets combine low reported current income with substantial rent.\nAmong counties with at least 5,000 renter households in the computable denominator, Lincoln Parish, Louisiana (66.7%), Watauga County, North Carolina (65.9%), and Osceola County, Florida (65.4%) had the highest estimated rates. The size threshold keeps very small counties with volatile estimates from dominating the ranking, but it does not make these estimates exact."
-  },
-  {
-    "objectID": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
-    "href": "blog/posts/post5/index.html#change-was-uneven-even-within-states",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "Change was uneven, even within states",
-    "text": "Change was uneven, even within states\nThe weighted national rate rose from 49.6% in 2019 to 51.1% in 2024, a 1.5 percentage-point increase. Yet the change map is much less uniform than that summary suggests.\n\n\n\n\n\n\n\n\nFigure 2: Change in county renter cost-burden rates between the 2015–2019 and 2020–2024 ACS periods. Red indicates an increase; blue indicates a decrease.\n\n\n\n\n\nThe mosaic of red and blue is substantive: state averages conceal neighboring counties moving in opposite directions. Still, some broader shifts are visible. Increases are common across Texas, Florida, and parts of the interior West, while improvement is more scattered. Gray Connecticut regions are a data-comparability issue, not missing analysis: after 2019, the Census Bureau replaced that state’s counties with planning regions, so a direct county match would be misleading.\nAggregating county counts before calculating state rates gives larger counties their proper population weight. Nevada recorded the largest increase, from 49.6% to 55.9% (+6.3 percentage points). Texas (+3.9), Florida (+3.8), Arizona (+3.5), and Georgia (+3.4) followed. Vermont moved in the other direction, falling 2.2 points.\n\n\n\n\n\n\n\n\nFigure 3: States with the largest absolute changes in the share of renters who were cost burdened."
-  },
-  {
-    "objectID": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
-    "href": "blog/posts/post5/index.html#what-the-pattern-meansand-what-it-cannot-prove",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "What the pattern means—and what it cannot prove",
-    "text": "What the pattern means—and what it cannot prove\nThe geographic evidence suggests that renter stress is both widespread and locally produced. A state-level policy response may miss county markets where the burden is much higher or changing faster. Housing agencies should therefore pair broad affordability programs with local monitoring, especially in rapidly worsening counties.\nThese are descriptive ACS estimates, not causal effects. Five-year estimates pool adjacent years, and the two periods overlap neither in time nor economic conditions. Sampling error is larger in small counties, and the maps do not isolate rent growth from changes in renter income or household composition. The practical takeaway is nevertheless clear: a majority of U.S. renters now face the standard cost-burden threshold, and the places experiencing the sharpest deterioration are not evenly distributed."
-  },
-  {
-    "objectID": "blog/posts/post5/index.html#reproducible-workflow",
-    "href": "blog/posts/post5/index.html#reproducible-workflow",
-    "title": "Rent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden",
-    "section": "Reproducible workflow",
-    "text": "Reproducible workflow\n\n\nShow reproducible R code\n# Download official Census data and boundary files.\nsource(\"R/01_download_data.R\")\n\n# Clean both ACS years, calculate weighted rates, join spatial boundaries,\n# and export the three figures and analysis-ready CSV files.\nsource(\"R/02_analysis.R\")\n\n\nData sources: 2019 ACS five-year replicate estimates, 2024 ACS five-year replicate estimates, and 2024 Census cartographic boundary files."
-  },
-  {
     "objectID": "blog/posts/post1/index.html",
     "href": "blog/posts/post1/index.html",
     "title": "Maximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability",
@@ -182,81 +231,53 @@
     "text": "Assumptions, source, and takeaway\nThe numbers are constructed for this explanation; no external dataset is used. The binomial model assumes a fixed number of independent flips with one constant (p). Dependence or a changing coin would require a different likelihood. R. A. Fisher’s 1922 paper on the foundations of theoretical statistics helped formalize likelihood as distinct from inverse probability.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nMaximum likelihood ranks parameter values by how well they explain fixed, observed data. The maximizer (p=k/n) is a point estimate, not the probability that the parameter is correct. The peak’s width supplies the missing second lesson: two identical estimates can carry very different amounts of information."
   },
   {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
+    "objectID": "bio.html",
+    "href": "bio.html",
+    "title": "About Me",
     "section": "",
-    "text": "Download my resume here:"
+    "text": "Write a short biography here.\nInclude:"
   },
   {
-    "objectID": "resume.html#resume-pdf",
-    "href": "resume.html#resume-pdf",
-    "title": "Resume",
-    "section": "Resume PDF",
-    "text": "Resume PDF"
+    "objectID": "bio.html#education",
+    "href": "bio.html#education",
+    "title": "About Me",
+    "section": "Education",
+    "text": "Education\nMaster of Applied Economics and Data Science, University of Pennsylvania (expaceted 2027) Batelor of Science, University Name 2026"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Haozhuo Zhang",
+    "objectID": "bio.html#interests",
+    "href": "bio.html#interests",
+    "title": "About Me",
+    "section": "Interests",
+    "text": "Interests\n\nMachine Learning\nData Analysis"
+  },
+  {
+    "objectID": "bio.html#contact",
+    "href": "bio.html#contact",
+    "title": "About Me",
+    "section": "Contact",
+    "text": "Contact"
+  },
+  {
+    "objectID": "bio.html#studentemail.edu",
+    "href": "bio.html#studentemail.edu",
+    "title": "About Me",
+    "section": "student@email.edu",
+    "text": "student@email.edu"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "blog/posts/post6/index.html",
-    "href": "blog/posts/post6/index.html",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
     "section": "",
-    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
-    "href": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "",
-    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
-    "href": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Step 1: construct parent–child links",
-    "text": "Step 1: construct parent–child links\nA self-join treats the people table as two temporary tables. c supplies children and p supplies parents. The ON clause requires a common family identifier, while the role conditions prevent child-to-child or parent-to-parent matches.\nSELECT\n    c.family_id,\n    c.person_id AS child_id,\n    p.person_id AS parent_id\nFROM people AS c\nJOIN people AS p\n  ON c.family_id = p.family_id\n AND c.role = 'child'\n AND p.role = 'parent';\nThis produces exactly 2,000 unique links. In real data I would also inspect duplicate links, missing identifiers, relationship codes, and household changes before proceeding."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
-    "href": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Step 2: turn annual income into economic status",
-    "text": "Step 2: turn annual income into economic status\nThe next query uses GROUP BY person_id so every individual contributes one row. CASE WHEN selects a particular age; AVG combines repeated observations. Common table expressions keep each transformation readable.\nWITH parent_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 45 THEN income END) AS income_age45,\n    AVG(CASE WHEN age BETWEEN 40 AND 50 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n),\nchild_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 25 THEN income END) AS income_age25,\n    MAX(CASE WHEN age = 35 THEN income END) AS income_age35,\n    AVG(CASE WHEN age BETWEEN 30 AND 40 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n)\nSELECT l.*, p.income_age45, p.income_avg,\n       c.income_age25, c.income_age35, c.income_avg\nFROM parent_child_links AS l\nJOIN parent_income AS p ON l.parent_id = p.person_id\nJOIN child_income AS c ON l.child_id = c.person_id;\nThe resulting analysis file has one family per row and preserves both IDs, making every estimate auditable."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#step-3-estimate-the-ige",
-    "href": "blog/posts/post6/index.html#step-3-estimate-the-ige",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Step 3: estimate the IGE",
-    "text": "Step 3: estimate the IGE\nThe standard log–log model is\n\\[\n\\log(Y_i^{child})=\\alpha+\\beta\\log(Y_i^{parent})+\\varepsilon_i.\n\\]\nThe slope () is the IGE: an approximate 10% difference in parental income is associated with a (10)% difference in child income. Larger values mean more persistence and less mobility.\n\nUsing one observation for the parent at age 45 and the child at age 25 gives an IGE of 0.218. Moving the child observation to age 35 raises it to 0.312. Averaging income across ages 40–50 for parents and 30–40 for children produces 0.405, almost exactly the known value."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
-    "href": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Why a young observation creates life-cycle bias",
-    "text": "Why a young observation creates life-cycle bias\nWorkers do not follow identical earnings paths. In the simulation, people with higher long-run income have steeper early-career growth. At age 25, their current income has not yet revealed their eventual position. Regressing this incomplete signal on parental income compresses the child-income gradient.\n\nThis is life-cycle bias: the same families imply different mobility depending on the child’s age at measurement. It is a property of the measurement strategy, not evidence that mobility literally changes as these children age."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#why-averaging-helps",
-    "href": "blog/posts/post6/index.html#why-averaging-helps",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Why averaging helps",
-    "text": "Why averaging helps\nEven at a sensible age, annual income contains bonuses, unemployment spells, and other temporary shocks. Averaging reduces this noise for both generations.\n\nWith one mid-career year for each generation, the estimate is 0.312. It rises to 0.370 with three years, 0.392 with five, and 0.405 with eleven. The practical lesson is direct: match people carefully, measure income at comparable life-cycle stages, and use multi-year averages whenever the panel permits."
-  },
-  {
-    "objectID": "blog/posts/post6/index.html#reproduce-the-tutorial",
-    "href": "blog/posts/post6/index.html#reproduce-the-tutorial",
-    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
-    "section": "Reproduce the tutorial",
-    "text": "Reproduce the tutorial\npython3 -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\npython analysis.py\nThe complete SQLite database, generated raw tables, matched dataframe, coefficient tables, figures, and source code are available in the project repository."
+    "text": "Can Gradient Boosting Predict Stock Returns? A Strict Out-of-Sample Test\n\n\nRevisiting the class XGBoost experiment with validation, stronger features, passive benchmarks, and trading costs\n\n\nA leakage-conscious test finds that a better-tuned XGBoost model still cannot beat a simple mean forecast, even when its top-stock portfolio looks attractive.\n\n\n\n\n\nNov 16, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nWhat Does 95% Really Mean? Learning Statistical Inference Through Simulation\n\n\nBootstrap intervals, repeated-sampling coverage, rejection regions, and p-values made visible\n\n\nInteractive simulations show how bootstrap confidence intervals and hypothesis tests behave across repeated samples.\n\n\n\n\n\nNov 2, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nDoes More Income Buy More Years? Exploring the Global Income–Health Gradient\n\n\nAn interactive Plotly analysis of 197 economies from 1990 to 2023\n\n\nInteractive country-level visualizations reveal both the global income–longevity gradient and the striking differences hidden by a single trend line.\n\n\n\n\n\nOct 26, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nFrom Family IDs to Mobility: Matching Parents and Children with SQL in Python\n\n\nA reproducible tutorial on intergenerational elasticity and life-cycle bias\n\n\nA step-by-step Python and SQLite tutorial showing how income timing and multi-year averages change estimates of intergenerational persistence.\n\n\n\n\n\nOct 21, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nRent Is Taking a Bigger Bite: Mapping U.S. Renter Cost Burden\n\n\nCounty patterns and changes from the 2019 and 2024 American Community Survey\n\n\nCounty maps reveal where rent consumes the largest share of household income and where renter cost burdens have grown since 2019.\n\n\n\n\n\nOct 19, 2026\n\n\nHaozhuo Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nPriced Out Twice: How Home Prices and Mortgage Rates Reshaped U.S. Affordability\n\n\nA FRED-based decomposition of the 2019–2025 homebuying squeeze\n\n\nHome prices rose first, mortgage rates then intensified the squeeze, and income growth only partly restored purchasing power.\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEducation as a Buffer Against Joblessness\n\n\nWhat 26 years of weighted CPS data reveal about unequal labor-market risk\n\n\nWeighted CPS evidence shows that workers with less education face higher unemployment and larger recession shocks.\n\n\n\n\n\nSep 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nFinding Room to Roam: Which National Parks Offer More Space per Visitor?\n\n\n\n\n\nA respectful one-page scrape turns national-park area and visitation data into a practical trip-planning shortlist.\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMaximum Likelihood: Why the Best-Fitting Parameter Is Not a Probability\n\n\n\n\n\nA coin-flip example explains what likelihood measures, derives the maximum-likelihood estimator, and shows how sample size changes uncertainty.\n\n\n\n\n\nSep 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post2/index.html",
@@ -343,46 +364,60 @@
     "text": "Sources, limitations, and takeaway\nThe raw CSV files were retrieved on October 5, 2026 through FRED’s public graph endpoint. The underlying sources are the U.S. Census Bureau and HUD for new-home prices, Freddie Mac for mortgage rates, the Census Bureau for household income, the Bureau of Labor Statistics for CPI, and FRED’s NBER-based recession indicator. The complete code, raw data, cleaned dataframe, and exported figures are in the project repository.\nThis national comparison omits regional variation, existing homes, taxes, insurance, maintenance, credit constraints, and the difficulty of accumulating a down payment. It also combines a median home with a median household rather than tracking the same buyers.\n\n\n\n\n\n\nNoteTakeaway\n\n\n\nThe affordability squeeze arrived in two stages: home prices raised the amount that had to be financed, and higher mortgage rates made each borrowed dollar more expensive. Income growth offset part of the damage by 2025, but did not restore the 2019 payment burden."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "blog/posts/post6/index.html",
+    "href": "blog/posts/post6/index.html",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
   },
   {
-    "objectID": "blog/posts/post7/index.html",
-    "href": "blog/posts/post7/index.html",
-    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
+    "objectID": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
+    "href": "blog/posts/post6/index.html#why-matching-is-the-first-econometric-problem",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
     "section": "",
-    "text": "Richer countries generally live longer—but does a given level of income buy the same longevity everywhere, and has that relationship changed since 1990? A static scatterplot can show one year. It cannot conveniently reveal each country’s identity, its path through time, or the regional patterns hidden underneath the global relationship.\nI combine three World Bank indicators: GDP per capita at purchasing-power parity in constant 2021 international dollars, life expectancy at birth, and population. After removing regional aggregates and rows missing any of the three measures, the panel contains 6,597 country-year observations and covers as many as 197 economies in 2023."
+    "text": "Intergenerational mobility asks how strongly children’s economic outcomes are related to their parents’ outcomes. Before estimating anything, however, we must solve a database problem: income appears in person-year rows, while family relationships appear in a person table. SQL is well suited to connecting those structures.\nThis tutorial uses a synthetic PSID-style panel of 2,000 families. Each family has one parent and one child, parents are observed from ages 35–55, and children from ages 22–40. The random seed is fixed, and the data-generating intergenerational elasticity (IGE) is 0.40. Synthetic data make the exercise fully reproducible and let us see measurement bias against a known benchmark; the estimates below are demonstrations, not claims about U.S. mobility.\nThe project contains two tables:\n\npeople(person_id, family_id, role, birth_year) identifies people and relationships.\nincome(person_id, year, age, income) stores repeated annual observations."
   },
   {
-    "objectID": "blog/posts/post7/index.html#the-question",
-    "href": "blog/posts/post7/index.html#the-question",
-    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
-    "section": "",
-    "text": "Richer countries generally live longer—but does a given level of income buy the same longevity everywhere, and has that relationship changed since 1990? A static scatterplot can show one year. It cannot conveniently reveal each country’s identity, its path through time, or the regional patterns hidden underneath the global relationship.\nI combine three World Bank indicators: GDP per capita at purchasing-power parity in constant 2021 international dollars, life expectancy at birth, and population. After removing regional aggregates and rows missing any of the three measures, the panel contains 6,597 country-year observations and covers as many as 197 economies in 2023."
+    "objectID": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
+    "href": "blog/posts/post6/index.html#step-1-construct-parentchild-links",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 1: construct parent–child links",
+    "text": "Step 1: construct parent–child links\nA self-join treats the people table as two temporary tables. c supplies children and p supplies parents. The ON clause requires a common family identifier, while the role conditions prevent child-to-child or parent-to-parent matches.\nSELECT\n    c.family_id,\n    c.person_id AS child_id,\n    p.person_id AS parent_id\nFROM people AS c\nJOIN people AS p\n  ON c.family_id = p.family_id\n AND c.role = 'child'\n AND p.role = 'parent';\nThis produces exactly 2,000 unique links. In real data I would also inspect duplicate links, missing identifiers, relationship codes, and household changes before proceeding."
   },
   {
-    "objectID": "blog/posts/post7/index.html#explore-countries-and-years",
-    "href": "blog/posts/post7/index.html#explore-countries-and-years",
-    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
-    "section": "Explore countries and years",
-    "text": "Explore countries and years\nThe animated bubble chart makes four dimensions accessible: horizontal position is income, vertical position is life expectancy, bubble area represents population, and color identifies World Bank region. Use Play or drag the year slider; hover to identify a country; click a legend label to isolate a region; and double-click the legend to restore all regions.\n\n\nOpen the animation in a separate page\nThe cloud moves up and right, but it does not collapse onto one line. Across the countries with complete data, population-weighted life expectancy increased from 65.1 years in 1990 to 73.4 in 2023, while population-weighted GDP per capita rose from approximately $11,382 to $20,995.\nThe cross-sectional gradient also flattened. An OLS regression of life expectancy on \\(\\log_2(\\text{GDP per capita})\\) associates one income doubling with 4.47 additional life-years in 1990, compared with 3.65 years in 2023. This pattern is consistent with diminishing health returns to income, although the graph is descriptive and does not identify a causal effect.\nThe hover labels reveal why interactivity matters. In 2023, Jordan’s life expectancy was about 6.6 years above the value predicted by the cross-country income relationship, while Nigeria’s was about 15.3 years below it. These residuals direct attention toward health systems, conflict, inequality, disease burden, and measurement—not just average income."
+    "objectID": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
+    "href": "blog/posts/post6/index.html#step-2-turn-annual-income-into-economic-status",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 2: turn annual income into economic status",
+    "text": "Step 2: turn annual income into economic status\nThe next query uses GROUP BY person_id so every individual contributes one row. CASE WHEN selects a particular age; AVG combines repeated observations. Common table expressions keep each transformation readable.\nWITH parent_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 45 THEN income END) AS income_age45,\n    AVG(CASE WHEN age BETWEEN 40 AND 50 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n),\nchild_income AS (\n  SELECT person_id,\n    MAX(CASE WHEN age = 25 THEN income END) AS income_age25,\n    MAX(CASE WHEN age = 35 THEN income END) AS income_age35,\n    AVG(CASE WHEN age BETWEEN 30 AND 40 THEN income END) AS income_avg\n  FROM income GROUP BY person_id\n)\nSELECT l.*, p.income_age45, p.income_avg,\n       c.income_age25, c.income_age35, c.income_avg\nFROM parent_child_links AS l\nJOIN parent_income AS p ON l.parent_id = p.person_id\nJOIN child_income AS c ON l.child_id = c.person_id;\nThe resulting analysis file has one family per row and preserves both IDs, making every estimate auditable."
   },
   {
-    "objectID": "blog/posts/post7/index.html#switch-between-regional-outcomes",
-    "href": "blog/posts/post7/index.html#switch-between-regional-outcomes",
-    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
-    "section": "Switch between regional outcomes",
-    "text": "Switch between regional outcomes\nThe second figure aggregates countries using population weights. Choose Life expectancy or GDP per capita, hover over a line for exact values, and use the legend to compare selected regions.\n\n\nOpen the regional comparison in a separate page\nSouth Asia recorded the largest life-expectancy gain, from 58.4 to 72.3 years. Sub-Saharan Africa also gained substantially—from 50.3 to 62.6 years—but remained far below every other region in 2023. Switching to GDP shows why a single global average is inadequate: East Asia and the Pacific experienced dramatic income growth, while Sub-Saharan Africa’s population-weighted GDP per capita rose much more slowly."
+    "objectID": "blog/posts/post6/index.html#step-3-estimate-the-ige",
+    "href": "blog/posts/post6/index.html#step-3-estimate-the-ige",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Step 3: estimate the IGE",
+    "text": "Step 3: estimate the IGE\nThe standard log–log model is\n\\[\n\\log(Y_i^{child})=\\alpha+\\beta\\log(Y_i^{parent})+\\varepsilon_i.\n\\]\nThe slope () is the IGE: an approximate 10% difference in parental income is associated with a (10)% difference in child income. Larger values mean more persistence and less mobility.\n\nUsing one observation for the parent at age 45 and the child at age 25 gives an IGE of 0.218. Moving the child observation to age 35 raises it to 0.312. Averaging income across ages 40–50 for parents and 30–40 for children produces 0.405, almost exactly the known value."
   },
   {
-    "objectID": "blog/posts/post7/index.html#how-the-visualization-is-built",
-    "href": "blog/posts/post7/index.html#how-the-visualization-is-built",
-    "title": "Does More Income Buy More Years? Exploring the Global Income–Health Gradient",
-    "section": "How the visualization is built",
-    "text": "How the visualization is built\nfig = px.scatter(\n    panel,\n    x=\"gdp_per_capita\",\n    y=\"life_expectancy\",\n    animation_frame=\"year\",\n    animation_group=\"iso3\",\n    size=\"population\",\n    color=\"region\",\n    hover_name=\"country\",\n    log_x=True\n)\nfig.write_html(\"figures/figure1_income_health_responsive.html\",\n               include_plotlyjs=True)\nanimation_group=\"iso3\" tells Plotly that the same country persists across frames. The logarithmic income axis makes proportional differences comparable, while hover labels preserve observation-level detail without covering the chart in text.\nThe takeaway is not simply that income and health are related. Countries with similar income can achieve very different longevity, and those differences remain economically meaningful even after decades of global progress. The animation, hover information, legend filtering, and metric selector let readers test that conclusion rather than merely accept a static summary.\nData source: World Bank Open Data API, indicators NY.GDP.PCAP.PP.KD, SP.DYN.LE00.IN, and SP.POP.TOTL. The complete download, cleaning code, data, and interactive files are available in the project repository."
+    "objectID": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
+    "href": "blog/posts/post6/index.html#why-a-young-observation-creates-life-cycle-bias",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Why a young observation creates life-cycle bias",
+    "text": "Why a young observation creates life-cycle bias\nWorkers do not follow identical earnings paths. In the simulation, people with higher long-run income have steeper early-career growth. At age 25, their current income has not yet revealed their eventual position. Regressing this incomplete signal on parental income compresses the child-income gradient.\n\nThis is life-cycle bias: the same families imply different mobility depending on the child’s age at measurement. It is a property of the measurement strategy, not evidence that mobility literally changes as these children age."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#why-averaging-helps",
+    "href": "blog/posts/post6/index.html#why-averaging-helps",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Why averaging helps",
+    "text": "Why averaging helps\nEven at a sensible age, annual income contains bonuses, unemployment spells, and other temporary shocks. Averaging reduces this noise for both generations.\n\nWith one mid-career year for each generation, the estimate is 0.312. It rises to 0.370 with three years, 0.392 with five, and 0.405 with eleven. The practical lesson is direct: match people carefully, measure income at comparable life-cycle stages, and use multi-year averages whenever the panel permits."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#reproduce-the-tutorial",
+    "href": "blog/posts/post6/index.html#reproduce-the-tutorial",
+    "title": "From Family IDs to Mobility: Matching Parents and Children with SQL in Python",
+    "section": "Reproduce the tutorial",
+    "text": "Reproduce the tutorial\npython3 -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\npython analysis.py\nThe complete SQLite database, generated raw tables, matched dataframe, coefficient tables, figures, and source code are available in the project repository."
   },
   {
     "objectID": "blog/posts/post8/index.html",
@@ -425,5 +460,12 @@
     "title": "What Does 95% Really Mean? Learning Statistical Inference Through Simulation",
     "section": "Takeaway",
     "text": "Takeaway\nBootstrap intervals and hypothesis tests are not mysterious formulas. They are repeated-sampling algorithms. A confidence level measures long-run coverage; a rejection region identifies statistics unusual under a null model; and a p-value measures null-model extremeness. Simulation exposes all three ideas and also shows their limits: results vary across samples, nominal coverage is approximate, and statistical significance is not the same as economic importance.\nSource and reproducibility: All observations are simulated; no external dataset is used. The population model, random seed, generated CSV files, complete Python code, and interactive figures are available in the project repository."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Haozhuo Zhang",
+    "section": "",
+    "text": "Haozhuo Zhang\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
   }
 ]

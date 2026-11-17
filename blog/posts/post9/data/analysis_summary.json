@@ -1,0 +1,10 @@
+{
+  "data_start": "2018-01-02",
+  "data_end": "2026-11-13",
+  "n_symbols": 95,
+  "n_test_rows": 3230,
+  "test_months": 34,
+  "best_depth": 2,
+  "best_eta": 0.03,
+  "best_rounds": 300
+}
